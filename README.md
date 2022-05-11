@@ -1,6 +1,6 @@
 # was-pywb
 
-This repository contains an experimental Docker configuration for SUL's [pywb] instance. It uses [nginx] as a reverse proxy in front of pywb, which is configured to use [OutbackCDX] for indexing. 
+This repository contains an experimental Docker configuration for a SUL [pywb] instance. It uses [nginx] as a reverse proxy in front of pywb, which is configured to use [OutbackCDX] for indexing. 
 
 ## Develop
 
