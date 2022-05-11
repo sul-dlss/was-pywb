@@ -4,7 +4,8 @@ pywb/collections/*/indexes/*
 pywb/collections/*/archive/*
 !pywb/collections/*/archive/.keep
 
-pywb/incoming/*
+pywb/incoming/*a
 !pywb/incoming/.keep
+!pywb/incoming/*/.keep
 
 *.log
