@@ -30,7 +30,7 @@ which will:
 
 You should now be able to open this in your browser:
 
-    [http://localhost:8080/public/20220510010324/https://apod.nasa.gov/](http://localhost:8080/public/20220510010324/https://apod.nasa.gov/)
+[http://localhost:8080/public/20220510010324/https://apod.nasa.gov/](http://localhost:8080/public/20220510010324/https://apod.nasa.gov/)
 
 [pywb]: https://pywb.readthedocs.io/
 [OutbackCDX]: https://github.com/nla/outbackcdx
