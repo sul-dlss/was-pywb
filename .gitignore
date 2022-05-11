@@ -1,0 +1,10 @@
+pywb/collections/*/indexes/*
+!pywb/collections/*/indexes/.keep
+
+pywb/collections/*/archive/*
+!pywb/collections/*/archive/.keep
+
+pywb/incoming/*
+!pywb/incoming/.keep
+
+*.log
