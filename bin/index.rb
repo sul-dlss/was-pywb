@@ -8,80 +8,95 @@
 
 require 'optparse'
 require 'pathname'
+require 'parallel'
 
 WARC_DIR = '/web-archiving-stacks/data/collections'
 CDX_DIR = '/data/edsu/indexes'
 
 def main
   opts = {
-    max_collections: 10,
-    max_warcs: 10
+    max_collections: 100000000,
+    max_warcs: 100000000,
+    processes: 1
   }
 
   OptionParser.new do |parser|
-    parser.on('-c', '--max-collections INT', Integer, 'Maximum collections to index [10]') do |i|
-      opts[:max_collections] = i
-    end
-    parser.on('-w', '--max-warcs INT', Integer, 'Maximum WARCs in each collection index [10]') do |i|
-      opts[:max_warcs] = i
-    end
+    parser.on('-c', '--max_collections INT', Integer, 'Maximum collections to index') 
+    parser.on('-w', '--max_warcs INT', Integer, 'Maximum WARCs in each collection index')
+    parser.on('-p', '--processes INT', Integer, 'Number of system processes to use for indexing [1]')
     parser.on('-h', '--help') do
       puts parser
       exit
     end
-  end.parse!
+  end.parse!(into: opts)
 
-  writer = IndexWriter.new(max_collections: opts[:max_collections], max_warcs: opts[:max_warcs])
+  writer = IndexWriter.new(
+    max_collections: opts[:max_collections],
+    max_warcs: opts[:max_warcs],
+    processes: opts[:processes]
+  )
   writer.run
 
-  puts "#{writer.bytes / writer.time} bytes/sec"
 end
 
 # A utility class for walking the filesystem looking for WARCs to index.
 class IndexWriter
-  attr_reader :bytes, :time
 
-  def initialize(max_collections:, max_warcs:)
+  def initialize(max_collections:, max_warcs:, processes:)
     @max_collections = max_collections
     @max_warcs = max_warcs
-    @bytes = 0
-    @time = 0
+    @processes = processes
   end
 
   def run
-    seen = {}
-    collections.each do |coll_dir|
-      seen[coll_dir.to_s] ||= 0
-      break if seen.length > @max_collections
+    bytes = 0
+    t0 = Time.new
+    results = Parallel.map(jobs, in_processes: @processes, progress: 'Indexing') do |job|
+      write_cdx(job)
+    end
+    bytes += results.sum
+    time = Time.new - t0
 
-      warcs(coll_dir) do |warc_file|
-        seen[coll_dir.to_s] += 1
-        break if seen[coll_dir.to_s] > @max_warcs
+    puts "#{bytes} bytes"
+    puts "#{time} seconds"
+    puts "#{bytes / time} bytes/sec" unless time == 0
+  end
 
-        write_cdx(warc_file: warc_file, coll_name: coll_dir.basename)
+  private
+
+  Result = Struct.new(:coll_dir, :warc_file)
+
+  def jobs 
+    return to_enum(:jobs) unless block_given?
+    collections.take(@max_collections).each do |coll_dir|
+      puts "coll #{coll_dir}"
+      warcs(coll_dir).take(@max_warcs).each do |warc_file|
+        puts "yielding #{warc_file}"
+      	yield Result.new(coll_dir, warc_file)
       end
     end
   end
-
+ 
   def collections
     Pathname.new(WARC_DIR).children.select(&:directory?)
   end
 
   def warcs(coll_dir)
+    return to_enum(:warcs, coll_dir) unless block_given?
     Pathname.new(coll_dir).find do |path|
       yield path if path.fnmatch('*arc.gz')
     end
   end
 
-  def write_cdx(warc_file:, coll_name:)
-    @bytes += warc_file.size
-    t0 = Time.new
-    cdx_filename = warc_file.basename.to_s.sub(/w?arc.gz$/, 'cdx')
-    cdx_path = Pathname.new(CDX_DIR) + coll_name + cdx_filename
+  def write_cdx(job)
+    cdx_filename = job.warc_file.basename.to_s.sub(/w?arc.gz$/, 'cdx')
+    cdx_path = Pathname.new(CDX_DIR) + job.coll_dir.basename + cdx_filename
     cdx_path.parent.mkpath unless cdx_path.parent.directory?
+    dir_root = job.coll_dir.to_s
 
-    puts "error processing #{warc_file}" unless system('cdxj-indexer', warc_file.to_s, '--output', cdx_path.to_s)
-    @time += Time.new - t0
+    cmd = ['cdxj-indexer', '--sort', '--output', cdx_path.to_s, '--dir-root', dir_root, job.warc_file.to_s]
+    puts "error processing #{warc_file}" unless system(*cmd)
+    job.warc_file.size
   end
 end
 
