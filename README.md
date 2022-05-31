@@ -1,6 +1,6 @@
 # was-pywb
 
-This repository contains an experimental Docker configuration for a SUL [pywb] instance. It uses [nginx] as a reverse proxy in front of pywb, which is configured to use [OutbackCDX] for indexing. 
+This repository contains a Docker configuration for a SUL [pywb] instance for use in development. It uses [nginx] as a reverse proxy in front of pywb, which is configured to use [OutbackCDX] for indexing.  It uses the default configuration of the stage and prod instances.
 
 ## Develop
 
@@ -10,28 +10,17 @@ Start the services:
 $ docker compose up -d
 ```
 
-Copy some test WARC data into the `incoming/public` directory:
+The `web-archiving-stacks` directory is meant to simulate the `/web-archiving-stacks` NFS share that is used in stage and prod environments. You can index some test content in your docker environment by:
 
 ```
-$ cp test-data/apod.warc.gz pywb/incoming/public/apod.warc.gz
+$ cp test-data/apod.warc.gz web-archiving-stacks/data/collections/
 ```
 
-Ingest the WARC data:
+3. Indexing it:
 
 ```
-$ docker compose exec pywb ./ingest.py
+$ docker compose run --rm pywb cdxj-indexer /web-archiving-stacks/data/collections/apod.warc.gz --sort --output /web-archiving-stacks/data/indexes/index.cdxj --dir-root /web-archiving-stacks/data/collections
 ```
-
-which will:
-
-1. move the WARC data to `pywb/collections/public/archive/apod.warc.gz`
-2. generate a CDXJ index for it at `pywb/collections/public/index/apod.cdxj`
-3. POST the CDXJ index to OutbackCDX
-
-You should now be able to open this in your browser:
-
-[http://localhost:8080/public/20220510010324/https://apod.nasa.gov/](http://localhost:8080/public/20220510010324/https://apod.nasa.gov/)
 
 [pywb]: https://pywb.readthedocs.io/
-[OutbackCDX]: https://github.com/nla/outbackcdx
 [nginx]: https://nginx.org/

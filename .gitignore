@@ -1,12 +1,5 @@
-pywb/collections/*/indexes/*
-!pywb/collections/*/indexes/.keep
-
-pywb/collections/*/archive/*
-!pywb/collections/*/archive/.keep
-
-pywb/incoming/*a
-!pywb/incoming/.keep
-!pywb/incoming/*/.keep
+web-archiving-stacks/
+!pywb/collections/**/.keep
 
 *.log
 
