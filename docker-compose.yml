@@ -5,10 +5,8 @@ services:
   pywb:
     build: .
     working_dir: /home/was/current
-
     volumes:
       - ./pywb:/home/was/current
-      - ./web-archiving-stacks:/web-archiving-stacks
 
   nginx:
     image: nginx

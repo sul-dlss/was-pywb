@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# This program will walk through WARC files and generate CDXJ files for them.
+# This work-in-progress program will walk through WARC files and generate CDXJ files for them.
 
 require 'logger'
 require 'optparse'
