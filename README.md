@@ -1,6 +1,7 @@
 # was-pywb
 
-This repository contains a Docker configuration for a SUL [pywb] instance for use in development. It uses [nginx] as a reverse proxy in front of pywb, which is configured to use [OutbackCDX] for indexing.  It uses the default configuration of the stage and prod instances.
+This repository contains configuration and utilities for the (soon to be released) [pywb] service running at swap.stanford.edu.
+A Docker configuration is included for development, which uses [nginx] as a reverse proxy in front of pywb.
 
 ## Develop
 
