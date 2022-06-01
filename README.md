@@ -1,37 +1,33 @@
 # was-pywb
 
-This repository contains an experimental Docker configuration for a SUL [pywb] instance. It uses [nginx] as a reverse proxy in front of pywb, which is configured to use [OutbackCDX] for indexing. 
+This repository contains configuration and utilities for the (soon to be released) [pywb] service running at swap.stanford.edu.
+A Docker configuration is included for development, which uses [nginx] as a reverse proxy in front of pywb.
 
 ## Develop
 
 Start the services:
 
 ```bash
-$ docker compose up -d
+$ docker compose up --build --detach
 ```
 
-Copy some test WARC data into the `incoming/public` directory:
+Copy a test WARC file into the container, where pywb is configured to look:
 
 ```
-$ cp test-data/apod.warc.gz pywb/incoming/public/apod.warc.gz
+$ docker compose cp test-data/apod.warc.gz pywb:web-archiving-stacks/data/collections/apod.warc.gz
 ```
 
-Ingest the WARC data:
+3. Index the data so that pywb can find things:
 
 ```
-$ docker compose exec pywb ./ingest.py
+$ docker compose exec pywb cdxj-indexer /web-archiving-stacks/data/collections/apod.warc.gz --post --sort --output /web-archiving-stacks/data/indexes/index.cdxj
 ```
 
-which will:
+4. View a page:
 
-1. move the WARC data to `pywb/collections/public/archive/apod.warc.gz`
-2. generate a CDXJ index for it at `pywb/collections/public/index/apod.cdxj`
-3. POST the CDXJ index to OutbackCDX
+Open http://localhost:8080/ in your browser and select the `was` collection and lookup this URL:
 
-You should now be able to open this in your browser:
-
-[http://localhost:8080/public/20220510010324/https://apod.nasa.gov/](http://localhost:8080/public/20220510010324/https://apod.nasa.gov/)
+   https://apod.nasa.gov
 
 [pywb]: https://pywb.readthedocs.io/
-[OutbackCDX]: https://github.com/nla/outbackcdx
 [nginx]: https://nginx.org/

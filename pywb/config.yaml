@@ -1,9 +1,4 @@
 collections:
-  public:
-    archive_paths: /pywb/collections/public/archive/
-    index:
-      type: cdx
-      api_url: http://outbackcdx:8080/public?url={url}&closest={closest}&sort=closest
-      replay_url: ""
-
-
+  was:
+    index_paths: /web-archiving-stacks/data/indexes/
+    archive_paths: /web-archiving-stacks/data/collections/
