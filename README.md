@@ -20,7 +20,7 @@ $ docker compose cp test-data/apod.warc.gz pywb:web-archiving-stacks/data/collec
 3. Index the data so that pywb can find things:
 
 ```
-$ docker compose exec pywb cdxj-indexer /web-archiving-stacks/data/collections/apod.warc.gz --post --sort --output /web-archiving-stacks/data/indexes/index.cdxj
+$ docker compose exec pywb cdxj-indexer /web-archiving-stacks/data/collections/ --output /web-archiving-stacks/data/indexes/index.cdxj --sort --post-append
 ```
 
 4. View a page:
