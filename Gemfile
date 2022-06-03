@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
+gem 'byebug'
+gem 'capistrano'
+gem 'dlss-capistrano'
 gem 'parallel'
 gem 'ruby-progressbar'
-
-group :development, :test do
-  gem 'byebug'
-  gem 'rubocop'
-end
