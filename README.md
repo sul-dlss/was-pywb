@@ -5,29 +5,37 @@ A Docker configuration is included for development, which uses [nginx] as a reve
 
 ## Develop
 
-Start the services:
+When developing you can start the services, which will add some WARC and CDXJ data from `test-data` to the container:
 
 ```bash
 $ docker compose up --build --detach
 ```
 
-Copy a test WARC file into the container, where pywb is configured to look:
+Then you should be able to open http://localhost:8080/ in your browser and select the `was` collection and lookup this URL:
+
+   https://apod.nasa.gov
+
+If you would like to test other WARC data you can copy it into pywb container:
 
 ```
-$ docker compose cp test-data/apod.warc.gz pywb:web-archiving-stacks/data/collections/apod.warc.gz
+$ docker compose cp test-data/data.warc.gz pywb:web-archiving-stacks/data/collections/data.warc.gz
 ```
 
-3. Index the data so that pywb can find things:
+Then you will need to update the index by running `cdx-indexer`:
 
 ```
 $ docker compose exec pywb cdxj-indexer /web-archiving-stacks/data/collections/ --output /web-archiving-stacks/data/indexes/index.cdxj --sort --post-append
 ```
 
-4. View a page:
+## Test
 
-Open http://localhost:8080/ in your browser and select the `was` collection and lookup this URL:
+You can run the unit tests by starting the docker containers:
 
-   https://apod.nasa.gov
+    docker compose up --detach
+
+and then running the tests:
+
+    bundle exec rake
 
 [pywb]: https://pywb.readthedocs.io/
 [nginx]: https://nginx.org/

@@ -4,9 +4,9 @@ services:
 
   pywb:
     build: .
-    working_dir: /home/was/current
+    working_dir: /home/was/swap/current
     volumes:
-      - ./pywb:/home/was/current
+      - .:/home/was/swap/current
 
   nginx:
     image: nginx
