@@ -5,7 +5,7 @@ require 'json'
 require 'net/http'
 require 'spec_helper'
 
-describe 'Web' do
+RSpec.describe 'Web' do
   it 'loads a page' do
     url = URI('http://localhost:8080/was/20220510010324mp_/https://apod.nasa.gov/apod/astropix.html')
     resp = Net::HTTP.get_response(url)

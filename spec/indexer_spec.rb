@@ -6,7 +6,7 @@ require 'json'
 require 'tmpdir'
 require 'spec_helper'
 
-describe Indexer do
+RSpec.describe Indexer do
   before(:each) do
     @temp_dir = Dir.mktmpdir
     @warcs_dir = "#{@temp_dir}/warcs"

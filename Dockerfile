@@ -19,8 +19,10 @@ ADD ./test-data/stanford.cdxj /web-archiving-stacks/data/indexes/cdxj/stanford.c
 ADD ./test-data/access.aclj /web-archiving-stacks/data/access.aclj
 
 # add our code
+# create app deploy directory
+RUN mkdir -p /home/was/swap/current
 WORKDIR /home/was/swap/current/
-ADD . /home/was/swap/current
+COPY . .
 
 # Ruby dependencies for testing and indexing
 RUN bundle config git.allow_insecure true

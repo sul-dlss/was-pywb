@@ -3,6 +3,7 @@ web-archiving-stacks/
 
 *.log
 
+/spec/examples.txt
 /.bundle/
 /.yardoc
 /_yardoc/

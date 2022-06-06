@@ -9,12 +9,14 @@ workflows:
       - ruby-rails/test-gem:
           name: test
           before-test:
-            - setup_remote_docker
+            - setup_remote_docker:
+                docker_layer_caching: true
             - run:
                 name: Spin up containers and verify running
                 command: |
-                  docker-compose --project-name was up -d --build
-                  docker container run --network container:was_pywb_1 \
+                  docker-compose up -d --build
+                  docker-compose ps
+                  docker container run --network container:project_nginx_1 \
                     docker.io/jwilder/dockerize \
                     -wait http://localhost:8080 \
                     -wait-retry-interval 1s \
