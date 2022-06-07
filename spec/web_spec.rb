@@ -3,6 +3,7 @@
 require 'uri'
 require 'json'
 require 'net/http'
+require 'spec_helper'
 
 describe 'Web' do
   it 'loads a page' do
