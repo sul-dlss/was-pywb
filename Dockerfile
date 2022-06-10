@@ -13,8 +13,7 @@ RUN mkdir /web-archiving-stacks/data/indexes/
 ADD ./test-data/apod.warc.gz /web-archiving-stacks/data/collections/apod.warc.gz
 ADD ./test-data/apod.cdxj /web-archiving-stacks/data/indexes/index.cdxj
 
-# create app deploy directory
-RUN mkdir -p /home/was/swap/current
+# add our code
 WORKDIR /home/was/swap/current/
 ADD . /home/was/swap/current
 
@@ -22,9 +21,9 @@ ADD . /home/was/swap/current
 RUN bundle config git.allow_insecure true
 RUN bundle install
 
-
 # Python depdendencies for pywb
-RUN pip3 install -r pywb/requirements.txt
+WORKDIR /home/was/swap/current/pywb
+RUN pip3 install -r requirements.txt
 
 # run!
-CMD ["uwsgi", "pywb/uwsgi.ini"]
+CMD ["uwsgi", "uwsgi.ini"]
