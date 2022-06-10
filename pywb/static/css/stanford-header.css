@@ -1,0 +1,34 @@
+.stanford-navbar {
+  background-color: #8c1515;
+  color: white;
+
+  .nav-link {
+    color: white;
+  }
+}
+
+.background-holder {
+  background-image: url('https://exhibits.stanford.edu/images/646/0,60,1200,120/1800,180/0/default.jpg');
+  background-position: center;
+  background-color: gray;
+  background-blend-mode: overlay;
+
+  .breadcrumbs {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .sdr-header {
+    color: white;
+
+    .stanford {
+      line-height: 2.2;
+      font-family: Palatino, ‘Palatino Linotype’, ‘Hoefler Text’, Times, ‘Times New Roman’, serif;
+      padding-right: 1rem;
+      border-right: 1px solid $white;
+    }
+
+    .digital-repo {
+      padding-left: 1rem;
+    }
+  }
+}
