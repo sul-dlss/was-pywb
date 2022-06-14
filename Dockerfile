@@ -7,13 +7,13 @@ RUN gem install bundler
 
 # create the directory where WARC data and CDX indexes live
 RUN mkdir -p /web-archiving-stacks/data/collections/
-RUN mkdir /web-archiving-stacks/data/indexes/
+RUN mkdir -p /web-archiving-stacks/data/indexes/cdxj
 
 # add some WARC and CDXJ data for testing
 ADD ./test-data/apod.warc.gz /web-archiving-stacks/data/collections/apod.warc.gz
-ADD ./test-data/apod.cdxj /web-archiving-stacks/data/indexes/apod.cdxj
+ADD ./test-data/apod.cdxj /web-archiving-stacks/data/indexes/cdxj/apod.cdxj
 ADD ./test-data/stanford.warc.gz /web-archiving-stacks/data/collections/stanford.warc.gz
-ADD ./test-data/stanford.cdxj /web-archiving-stacks/data/indexes/stanford.cdxj
+ADD ./test-data/stanford.cdxj /web-archiving-stacks/data/indexes/cdxj/stanford.cdxj
 
 # add our code
 WORKDIR /home/was/swap/current/
