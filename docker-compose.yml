@@ -4,7 +4,6 @@ services:
 
   pywb:
     build: .
-    working_dir: /home/was/swap/current
     volumes:
       - .:/home/was/swap/current
 
