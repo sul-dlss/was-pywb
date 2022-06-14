@@ -33,9 +33,11 @@ You can run the unit tests by starting the docker containers:
 
     docker compose up --detach
 
-and then running the tests:
+and then running the tests in the pywb container:
 
-    bundle exec rake
+    docker compose exec pywb bundle exec rake
+
+You can run the tests locally with `bundle exec rake` if you want, but you will need to have a working Python environment and pywb installed for them to pass. 
 
 [pywb]: https://pywb.readthedocs.io/
 [nginx]: https://nginx.org/

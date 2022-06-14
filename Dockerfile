@@ -11,7 +11,9 @@ RUN mkdir /web-archiving-stacks/data/indexes/
 
 # add some WARC and CDXJ data for testing
 ADD ./test-data/apod.warc.gz /web-archiving-stacks/data/collections/apod.warc.gz
-ADD ./test-data/apod.cdxj /web-archiving-stacks/data/indexes/index.cdxj
+ADD ./test-data/apod.cdxj /web-archiving-stacks/data/indexes/apod.cdxj
+ADD ./test-data/stanford.warc.gz /web-archiving-stacks/data/collections/stanford.warc.gz
+ADD ./test-data/stanford.cdxj /web-archiving-stacks/data/indexes/stanford.cdxj
 
 # add our code
 WORKDIR /home/was/swap/current/
