@@ -1,4 +1,7 @@
 collections:
   was:
     index_paths: /web-archiving-stacks/data/indexes/cdxj/
-    archive_paths: /web-archiving-stacks/data/collections/
+    archive_paths: 
+      - /web-archiving-stacks/data/indexes/path/path.txt
+      - /web-archiving-stacks/data/collections/
+
