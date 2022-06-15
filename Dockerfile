@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 RUN apt update
 
 # install python and ruby
-RUN apt install -y python3-dev python3-pip ruby ruby-dev
+RUN apt install -y python3-dev python3-pip ruby ruby-dev git
 RUN gem install bundler
 
 # create the directory where WARC data and CDX indexes live

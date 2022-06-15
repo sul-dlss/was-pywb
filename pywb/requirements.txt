@@ -1,3 +1,3 @@
-pywb
+git+https://github.com/edsu/pywb.git@2.7.0-beta
 uwsgi
 cdxj-indexer

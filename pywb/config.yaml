@@ -4,4 +4,6 @@ collections:
     archive_paths: 
       - /web-archiving-stacks/data/indexes/path/path-index.txt
       - /web-archiving-stacks/data/collections/
-
+ui:
+  vue_calendar_ui: true
+  vue_timeline_banner: true
