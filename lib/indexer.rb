@@ -53,8 +53,13 @@ class Indexer
     cat(cdxj_files, tmp_path)
 
     # sort the tmp file into place
-    cmd = ['sort', tmp_path.to_s, '--output', index_path.to_s]
-    puts('Error while sorting') unless system(*cmd)
+    #
+    # TMPDIR needs to be set to a partition with lots of space
+    #
+    # LC_ALL=C is needed to ensure that a byte sort is used
+    # See https://specs.webrecorder.net/cdxj/0.1.0/#sorting
+    cmd = "TMPDIR=/web-archiving-stacks/data/tmp/ LC_ALL=C sort #{tmp_path} --output \"#{index_path}\""
+    puts('Error while sorting') unless system(cmd)
 
     tmp_path.unlink
   end
