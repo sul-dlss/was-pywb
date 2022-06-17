@@ -58,6 +58,8 @@ class Indexer
     #
     # LC_ALL=C is needed to ensure that a byte sort is used
     # See https://specs.webrecorder.net/cdxj/0.1.0/#sorting
+    puts('Sorting, this could take a while...')
+    @log.info("sorting #{tmp_path} to #{index_path}")
     cmd = "TMPDIR=/web-archiving-stacks/data/tmp/ LC_ALL=C sort #{tmp_path} --output \"#{index_path}\""
     puts('Error while sorting') unless system(cmd)
 
@@ -76,7 +78,10 @@ class Indexer
   end
 
   def find_warc_files
-    warcs = Pathname.new(@warcs_dir).find.filter { |path| path.fnmatch('*arc.gz') }
+    # find warc and arc files whether or not they are compressed
+    warcs = Pathname.new(@warcs_dir).find.filter do |path|
+      path.to_s.match('.w?arc(\.gz)?$')
+    end
     if @force_reindex
       warcs
     else
