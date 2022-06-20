@@ -37,7 +37,15 @@ and then running the tests in the pywb container:
 
     docker compose exec pywb bundle exec rake
 
-You can run the tests locally with `bundle exec rake` if you want, but you will need to have a working Python environment and pywb installed for them to pass. 
+You can run the tests locally with `bundle exec rake` if you want, but you will need to have a working Python environment and pywb installed for them to pass.
 
 [pywb]: https://pywb.readthedocs.io/
 [nginx]: https://nginx.org/
+
+## Deploy
+
+The was-pywb application is deployable via Capistrano like our other team projects, even though the app itself requires Python to run.
+
+It is also deployable via the sdr-deploy application for mass-deploys (e.g., for weekly dependency updates).
+
+**NOTE**: Every time was-pywb is deployed, `pip3 install -r requirements.txt` is run which---given none of the app's dependencies have been pinned to particular versions---should always result in running the app on the latest matrix of dependencies that work together. Thus, no weekly update PRs (via JenkinsCI) are needed for was-pywb.
