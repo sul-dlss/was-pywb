@@ -8,8 +8,10 @@ require 'byebug'
 
 WAS_ROOT = 'https://was-pywb-prod.stanford.edu/was/'
 WAS_SEARCH = 'https://was-pywb-prod.stanford.edu/was/*?url='
-WAS_PLAYBACK = 'https://was-pywb-prod.stanford.edu/was/19900101mp_/' # an early, dummy date is required to get the first crawl
+# WAS_PLAYBACK requires an early, dummy date to select the first crawl data
+WAS_PLAYBACK = 'https://was-pywb-prod.stanford.edu/was/19900101mp_/'
 
+# Set default options
 @opts = {
   processes: 10,
   num: 1000
@@ -31,9 +33,16 @@ OptionParser.new do |parser|
   end
 end.parse!(into: @opts)
 
+# Retrieves the given URL (and follows redirects) to compare response time and size
+#
+# @param url [String] the url to retrieve
+# @param prefix [String] the host prefix (i.e. http://was-pywb-prod.stanford.edu)
+# @return [Array<Integer, Float>] the response body size (Integer) and the response time (Float)
 def fetch(url, prefix = '')
   t0 = Time.new
 
+  # For some redirected URLs the location does not include the `http://....` and the resulting request will fail.
+  # If the URL does not start with the expected prefix, prepend it.
   url = "#{prefix}#{url}" unless url.start_with?(prefix)
   response = Net::HTTP.get_response(URI(url))
 
@@ -45,8 +54,12 @@ def fetch(url, prefix = '')
   [response.body&.size || 0, Time.new - t0]
 end
 
+# Prints out the performance metrics
+#
+# @param data [Array<Array <Integer>, Array<Float>>] two demensional array of response body size and response time
 # rubocop:disable Metrics/AbcSize
 def report(data)
+  # Seperate the two dementional array into purposeful arrays for the following calculations
   page_sizes = data.collect { |response| response[0] }
   response_times = data.collect { |response| response[1] }
   puts "Total data requested: #{page_sizes.sum}
@@ -61,11 +74,13 @@ def report(data)
 end
 # rubocop:enable Metrics/AbcSize
 
+# Only visit the WAS_ROOT path if the -r|--root options is passed.
+# If -r|--root is used, this is the only test that will be performed.
 if @opts[:root]
   root_urls = @opts[:num].times.map { WAS_ROOT } # create an array of the root url to parallelize visits.
-  root_results = Parallel.map(root_urls, in_processes: @opts[:processes],
-                                         progress: '1000 urls/10 processes on ROOT') do |url|
-    # puts "Worker: #{Parallel.worker_number} -> #{url}"
+  root_results = Parallel.map(root_urls,
+                              in_processes: @opts[:processes],
+                              progress: "#{@opts[:num]}/#{@opts[:processes]} processes on the homepage") do |url|
     fetch(url.chomp)
   end
   puts 'WAS-PyWB Homepage Complete:'
@@ -74,12 +89,15 @@ if @opts[:root]
   exit 0
 end
 
+# Read the input file of URLS
 urls = File.readlines(@opts[:file])
 
+# Only visit the WAS_SEARCH path if the -i|--index options is passed.
+# If -i|--index is used, this is the only test that will be performed.
 if @opts[:index]
-  search_index_results = Parallel.map(urls, in_processes: @opts[:processes],
-                                            progress: '1000 urls/10 processes on SEARCH INDEX') do |url|
-    # puts "Worker: #{Parallel.worker_number} -> #{url}"
+  search_index_results = Parallel.map(urls,
+                                      in_processes: @opts[:processes],
+                                      progress: "#{urls.length}/#{@opts[:processes]} processes on SEARCH INDEX") do |url| # rubocop:disable Layout/LineLength
     fetch("#{WAS_SEARCH}#{url.chomp}", '')
   end
   puts 'WAS-PyWB Search Results Complete'
@@ -87,10 +105,11 @@ if @opts[:index]
   exit 0
 end
 
-# WAS-PyWB
-was_results = Parallel.map(urls, in_processes: @opts[:processes],
-                                 progress: '1000 urls/10 processes on WAS-PyWB') do |url|
-  # puts "Worker: #{Parallel.worker_number} -> #{url}"
+# The main WAS-PyWB performance test
+# This will always run unless -r or -i are passed as options (See above.)
+was_results = Parallel.map(urls,
+                           in_processes: @opts[:processes],
+                           progress: "#{urls.length}/#{@opts[:processes]} processes on WAS-PyWB") do |url|
   fetch("#{WAS_PLAYBACK}#{url.chomp}", 'https://was-pywb-prod.stanford.edu')
 end
 puts 'WAS-PyWB Complete.'
