@@ -20,7 +20,8 @@ set :deploy_to, '/home/was/swap'
 # set :pty, true
 
 # Default value for :linked_files is []
-# append :linked_files, "config/database.yml", 'config/master.key'
+append :linked_files,
+       'config/honeybadger.yml' # in shared_configs
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", "vendor"
@@ -36,6 +37,9 @@ set :deploy_to, '/home/was/swap'
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+# honeybadger_env otherwise defaults to rails_env
+set :honeybadger_env, fetch(:stage)
 
 namespace :uwsgi do
   desc 'Display uWSGI status'
@@ -81,3 +85,5 @@ end
 before 'deploy:updated', 'pip:install'
 before 'deploy:reverted', 'pip:install'
 after 'deploy:publishing', 'uwsgi:restart'
+# update shared_configs before restarting app (from dlss-capistrano gem)
+before 'deploy:publishing', 'shared_configs:update'
