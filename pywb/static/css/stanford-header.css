@@ -7,6 +7,10 @@
   }
 }
 
+body {
+  font-family: 'Source Sans Pro', san-serif !important;
+}
+
 .background-holder {
   background-image: url('https://exhibits.stanford.edu/images/646/0,60,1200,120/1800,180/0/default.jpg');
   background-position: center;
