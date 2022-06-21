@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<script>
+// TODO: cleanup
+window.wb_prefix = "{{ wb_prefix }}";
+</script>
+<script src="{{ static_prefix }}/search.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <h4 class="display-4">
+            {% trans %}Stanford Web Archive Portal{% endtrans %}
+        </h4>
+    </div>
+</div>
+<div class="container mt-4">
+    <form class="needs-validation" id="search-form" novalidate>
+        <div class="form-row">
+            <div class="col-12">
+                <label for="search-url" class="lead" aria-label="Search For Col">
+                    {% set coll_title = metadata.title if metadata and metadata.title else coll %}
+                    {% trans %}Search the collections by URL:{% endtrans %}
+                </label>
+            </div>
+            <div class="align-self-center col-1">https://</div>
+            <div class="col-11">
+                <input aria-label="url" aria-required="true" class="form-control form-control-lg" id="search-url"
+                       name="search" placeholder="{{ _('Enter a URL to search for') }}"
+                       title="{{ _('Enter a URL to search for') }}" type="search" required/>
+            </div>
+            <div class="col-12 invalid-feedback">
+               {% trans %}'Please enter a URL{% endtrans %}
+            </div>
+        </div>
+        <div class="form-row mt-2">
+            <div class="col-5">
+                <div class="custom-control custom-checkbox custom-control">
+                    <input type="checkbox" class="custom-control-input" id="open-results-new-window">
+                    <label class="custom-control-label" for="open-results-new-window">{{ _('Open results in new window') }}</label>
+                </div>
+            </div>
+            <div class="col-7">
+                <button type="submit" class="btn btn-outline-primary float-right" role="button" aria-label="Search">
+                    {% trans %}Search{% endtrans %}
+                </button>
+                <button class="btn btn-outline-info float-right mr-3" type="button" role="button"
+                        data-toggle="collapse" data-target="#advancedOptions"
+                        aria-expanded="false" aria-controls="advancedOptions" aria-label="Advanced Search Options">
+                    {{ _('Advanced Search Options') }}
+                </button>
+            </div>
+        </div>
+        <div class="collapse mt-3" id="advancedOptions">
+            <div class="form-group form-row">
+                <label for="match-type-select" class="col-sm-2 col-form-label" aria-label="Match Type">
+                    {{ _('Match Type:') }}
+                </label>
+                <select id="match-type-select" class="form-control form-control col-sm-6">
+                    <option value=""></option>
+                    <option value="prefix">{% trans %}Prefix{% endtrans %}</option>
+                    <option value="host">{% trans %}Host{% endtrans %}</option>
+                    <option value="domain">{% trans %}Domain{% endtrans %}</option>
+                </select>
+            </div>
+            <p style="cursor: help;">
+               <span data-toggle="tooltip" data-placement="right"
+                     title="Restricts the results to the given date/time range (inclusive)">
+                   {{ _('Date/Time Range') }}
+                </span>
+            </p>
+            <div class="form-row">
+                <div class="col-6">
+                    <label class="sr-only" for="dt-from" aria-label="Date/Time Range From">{% trans %}From:{% endtrans %}</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">{% trans %}From:{% endtrans %}</div>
+                        </div>
+                        <input id="dt-from" type="number" name="date-range-from" class="form-control"
+                               pattern="^\d{4,14}$">
+                        <div class="invalid-feedback" id="dt-from-bad">
+                            {% trans %}Please enter a valid <b>From</b> timestamp. Timestamps may be 4 <= ts <=14 digits{% endtrans %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label class="sr-only" for="dt-to" aria-label="Date/Time Range To">{% trans %}To:{% endtrans %}</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">{% trans %}To:{% endtrans %}</div>
+                        </div>
+                        <input id="dt-to" type="number" name="date-range-to" class="form-control" pattern="^\d{4,14}$">
+                        <div class="invalid-feedback" id="dt-to-bad">
+                            {% trans %}Please enter a valid <b>To</b> timestamp. Timestamps may be 4 <= ts <=14 digits{% endtrans %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <div class="form-row">
+                    <div class="col-6">
+                        <p>{% trans %}Filtering{% endtrans %}</p>
+                    </div>
+                    <div class="col-6">
+                        <button id="clear-filters" class="btn btn-outline-warning float-right" type="button">
+                            {% trans %}Clear Filters{% endtrans %}
+                        </button>
+                        <button id="add-filter" class="btn btn-outline-secondary float-right mr-2" type="button">
+                            {% trans %}Add Filter{% endtrans %}
+                        </button>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-6">
+                        <div class="row pb-1">
+                            <label for="filter-by" class="col-form-label col-3">{% trans %}By:{% endtrans %}</label>
+                            <select id="filter-by" class="form-control col-7">
+                                <option value="" selected></option>
+                                <option value="mime">{% trans %}Mime Type{% endtrans %}</option>
+                                <option value="status">{% trans %}Status{% endtrans %}</option>
+                                <option value="url">{% trans %}URL{% endtrans %}</option>
+                            </select>
+                        </div>
+                        <div class="row pb-1">
+                            <label for="filter-modifier" class="col-form-label col-3">{% trans %}How:{% endtrans %}</label>
+                            <select id="filter-modifier" class="form-control col-7">
+                                <option value="=">{% trans %}Contains{% endtrans %}</option>
+                                <option value="==">{% trans %}Matches Exactly{% endtrans %}</option>
+                                <option value="=~">{% trans %}Matches Regex{% endtrans %}</option>
+                                <option value="=!">{% trans %}Does Not Contain{% endtrans %}</option>
+                                <option value="=!=">{% trans %}Is Not{% endtrans %}</option>
+                                <option value="=!~">{% trans %}Does Not Begins With{% endtrans %}</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <label for="filter-expression" class="col-form-label col-3">{% trans %}Expr:{% endtrans %}</label>
+                            <input type="text" id="filter-expression" class="form-control col-7"
+                                   placeholder="Enter an expression to filter by"
+                            >
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <ul id="filter-list" class="filter-list">
+                            <li id="filtering-nothing">{% trans %}No Filter{% endtrans %}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% if metadata %}
+    <div class="container mt-4 justify-content-center">
+        <p class="lead">{{ _('Collection Metadata') }}</p>
+        <div class="row">
+            <div class="col-4 pr-1">
+                <div class="list-group" id="collection-metadata" role="tablist">
+                    {% for key in metadata.keys() %}
+                        <a class="list-group-item list-group-item-action text-uppercase {% if loop.index0 == 0 %}active{% endif %}"
+                           data-toggle="list" href="#collection-metadata-{{ key }}" role="tab">
+                            {{ key }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-8 pl-1">
+                <div class="tab-content h-100">
+                    {% for key, val in metadata.items() %}
+                        <div class="tab-pane inherit-height {% if loop.index0 == 0 %}active{% endif %}"
+                             id="collection-metadata-{{ key }}" role="tabpanel">
+                            <div class="card inherit-height">
+                                <div class="card-body">
+                                    {{ val }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
