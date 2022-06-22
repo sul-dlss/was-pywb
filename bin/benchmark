@@ -1,0 +1,116 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'net/http'
+require 'parallel'
+require 'optparse'
+require 'byebug'
+
+WAS_ROOT = 'https://was-pywb-prod.stanford.edu/was/'
+WAS_SEARCH = 'https://was-pywb-prod.stanford.edu/was/*?url='
+# WAS_PLAYBACK requires an early, dummy date to select the first crawl data
+WAS_PLAYBACK = 'https://was-pywb-prod.stanford.edu/was/19900101mp_/'
+
+# Set default options
+@opts = {
+  processes: 10,
+  num: 1000
+}
+
+OptionParser.new do |parser|
+  parser.on('-f', '--file PATH', 'The input file of URLs to use for benchmarking.')
+  parser.on('-i', '--index', TrueClass, 'Visit the search results index for the given URLs.') do |index|
+    @opts[:index] = index.nil? ? false : true
+  end
+  parser.on('-n', '--num INT', Integer, 'The number of times to visit the root path.')
+  parser.on('-p', '--processes INT', Integer, 'The number of prcessses to run in parallel.')
+  parser.on('-r', '--root-only', TrueClass, 'Only test the was-pywb homepage') do |root|
+    @opts[:root] = root.nil? ? false : true
+  end
+  parser.on('-h', '--help') do
+    puts parser
+    exit
+  end
+end.parse!(into: @opts)
+
+# Retrieves the given URL (and follows redirects) to compare response time and size
+#
+# @param url [String] the url to retrieve
+# @param prefix [String] the host prefix (i.e. http://was-pywb-prod.stanford.edu)
+# @return [Array<Integer, Float>] the response body size (Integer) and the response time (Float)
+def fetch(url, prefix = '')
+  t0 = Time.new
+
+  # For some redirected URLs the location does not include the `http://....` and the resulting request will fail.
+  # If the URL does not start with the expected prefix, prepend it.
+  url = "#{prefix}#{url}" unless url.start_with?(prefix)
+  response = Net::HTTP.get_response(URI(url))
+
+  case response
+  when Net::HTTPFound
+    fetch(response['location'], prefix)
+  end
+
+  [response.body&.size || 0, Time.new - t0]
+end
+
+# Prints out the performance metrics
+#
+# @param data [Array<Array <Integer>, Array<Float>>] two demensional array of response body size and response time
+# rubocop:disable Metrics/AbcSize
+def report(data)
+  # Seperate the two dementional array into purposeful arrays for the following calculations
+  page_sizes = data.collect { |response| response[0] }
+  response_times = data.collect { |response| response[1] }
+  puts "Total data requested: #{page_sizes.sum}
+        Average page size: #{page_sizes.sum / page_sizes.length}
+        Max page size: #{page_sizes.max}
+        Min page size: #{page_sizes.min}"
+  puts "Total request time: #{response_times.sum}
+        Actual request time: #{response_times.sum / @opts[:processes]}
+        Max request time: #{response_times.max}
+        Min request time: #{response_times.min}
+        Avg request time: #{response_times.sum / response_times.length}"
+end
+# rubocop:enable Metrics/AbcSize
+
+# Only visit the WAS_ROOT path if the -r|--root options is passed.
+# If -r|--root is used, this is the only test that will be performed.
+if @opts[:root]
+  root_urls = @opts[:num].times.map { WAS_ROOT } # create an array of the root url to parallelize visits.
+  root_results = Parallel.map(root_urls,
+                              in_processes: @opts[:processes],
+                              progress: "#{@opts[:num]}/#{@opts[:processes]} processes on the homepage") do |url|
+    fetch(url.chomp)
+  end
+  puts 'WAS-PyWB Homepage Complete:'
+  report(root_results)
+
+  exit 0
+end
+
+# Read the input file of URLS
+urls = File.readlines(@opts[:file])
+
+# Only visit the WAS_SEARCH path if the -i|--index options is passed.
+# If -i|--index is used, this is the only test that will be performed.
+if @opts[:index]
+  search_index_results = Parallel.map(urls,
+                                      in_processes: @opts[:processes],
+                                      progress: "#{urls.length}/#{@opts[:processes]} processes on SEARCH INDEX") do |url| # rubocop:disable Layout/LineLength
+    fetch("#{WAS_SEARCH}#{url.chomp}", '')
+  end
+  puts 'WAS-PyWB Search Results Complete'
+  report(search_index_results)
+  exit 0
+end
+
+# The main WAS-PyWB performance test
+# This will always run unless -r or -i are passed as options (See above.)
+was_results = Parallel.map(urls,
+                           in_processes: @opts[:processes],
+                           progress: "#{urls.length}/#{@opts[:processes]} processes on WAS-PyWB") do |url|
+  fetch("#{WAS_PLAYBACK}#{url.chomp}", 'https://was-pywb-prod.stanford.edu')
+end
+puts 'WAS-PyWB Complete.'
+report(was_results)

@@ -49,3 +49,51 @@ The was-pywb application is deployable via Capistrano like our other team projec
 It is also deployable via the sdr-deploy application for mass-deploys (e.g., for weekly dependency updates).
 
 **NOTE**: Every time was-pywb is deployed, `pip3 install -r requirements.txt` is run which---given none of the app's dependencies have been pinned to particular versions---should always result in running the app on the latest matrix of dependencies that work together. Thus, no weekly update PRs (via JenkinsCI) are needed for was-pywb.
+
+## Performance Benchmarking
+
+The `bin/benchmark` script provides a means of establishing performance metrics against was-pywb.
+
+There are several options available when running benchmarks:
+```
+❯ bin/benchmark -h
+Usage: benchmark [options]
+    -f, --file PATH                  The input file of URLs to use for benchmarking.
+    -i, --index                      Visit the search results index for the given URLs.
+    -n, --num INT                    The number of times to visit the root path.
+    -p, --processes INT              The number of prcessses to run in parallel.
+    -r, --root-only                  Only test the was-pywb homepage
+    -h, --help
+```
+
+For example, to use 100 processes to visit the 1000 websites in `urls.txt`, execute:
+```
+bin/benchmark -f spec/fixtures/urls.txt -p 100
+```
+
+This will produce output like:
+```
+❯ bin/benchmark -f spec/fixtures/urls.txt -p 100
+1000 urls/100 processes on WAS-PyWB |Time: 00:00:47 | ==================================================== | Time: 00:00:47
+WAS-PyWB Complete.
+Total data requested: 77590863
+        Average page size: 77513
+        Max page size: 14513632
+        Min page size: 0
+Total request time: 992.623845
+        Actual request time: 9.92623845
+        Max request time: 44.713049
+        Min request time: 0.139367
+        Avg request time: 0.9916322127872127
+```
+
+Similarly, a benchmark to visit the homepage 1000 times across 100 processes can be very useful when run concurrently with the
+above benchmark in order to determine the effect of various loads.
+```
+bin/benchmark -r -p 100 -n 1000
+```
+
+And benchmarking the search results index pages for each given URL as well:
+```
+bin/benchmark -f spec/fixtures/urls.txt -p 100 -i
+```
