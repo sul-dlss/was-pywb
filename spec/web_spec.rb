@@ -31,4 +31,10 @@ describe 'Web' do
     expect(payload['url']).to eq('https://apod.nasa.gov/')
     expect(payload['mime']).to eq('text/html')
   end
+
+  it 'excludes content' do
+    url = URI('http://localhost:8080/was/20220510010324mp_/https://apod.nasa.gov/apod/lib/apsubmit2015.html')
+    resp = Net::HTTP.get_response(url)
+    expect(resp).to be_instance_of(Net::HTTPNotFound)
+  end
 end
