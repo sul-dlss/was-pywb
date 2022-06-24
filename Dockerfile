@@ -15,6 +15,9 @@ ADD ./test-data/apod.cdxj /web-archiving-stacks/data/indexes/cdxj/apod.cdxj
 ADD ./test-data/stanford.warc.gz /web-archiving-stacks/data/collections/stanford.warc.gz
 ADD ./test-data/stanford.cdxj /web-archiving-stacks/data/indexes/cdxj/stanford.cdxj
 
+# add the ALCJ file for testing
+ADD ./test-data/access.aclj /web-archiving-stacks/data/access.aclj
+
 # add our code
 WORKDIR /home/was/swap/current/
 ADD . /home/was/swap/current
