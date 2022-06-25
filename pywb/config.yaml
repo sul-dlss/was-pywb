@@ -2,7 +2,6 @@ collections:
   was:
     index_paths: /web-archiving-stacks/data/indexes/cdxj/
     archive_paths: 
-      - /web-archiving-stacks/data/indexes/path/path-index.txt
       - /web-archiving-stacks/data/collections/
     acl_paths: /web-archiving-stacks/data/access.aclj
 
