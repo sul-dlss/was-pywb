@@ -76,7 +76,7 @@ namespace :pip do
   task :install do
     on roles(:app) do
       within "#{current_path}/pywb" do
-        execute :pip3, :install, '-r requirements.txt'
+        execute :pip3, :install, '--upgrade', '--requirement requirements.txt'
       end
     end
   end

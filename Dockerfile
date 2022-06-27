@@ -28,7 +28,7 @@ RUN bundle install
 
 # Python depdendencies for pywb
 WORKDIR /home/was/swap/current/pywb
-RUN pip3 install -r requirements.txt
+RUN pip3 install --upgrade --requirement requirements.txt
 
 # run!
 CMD ["uwsgi", "uwsgi.ini"]
