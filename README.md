@@ -31,6 +31,10 @@ Then you will need to update the index by running `cdx-indexer`:
 $ docker compose exec pywb cdxj-indexer /web-archiving-stacks/data/collections/ --output /web-archiving-stacks/data/indexes/index.cdxj --sort --post-append
 ```
 
+### Generating WARC data
+
+Consider the [warc file option of wget](https://wiki.archiveteam.org/index.php/Wget_with_WARC_output) to create local test warc data for indexing above.
+
 ## Test
 
 You can run the unit tests by starting the docker containers:
