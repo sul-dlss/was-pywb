@@ -39,7 +39,7 @@ describe Indexer do
     expect(index_files[0].basename.to_s).to eq('index.cdxj')
 
     surts = get_surts(@indexes_dir + '/index.cdxj')
-    expect(surts.length).to be 698
+    expect(surts.length).to be 711
     expect(surts[0]).to be < surts[1]
   end
 end

@@ -16,7 +16,7 @@ describe 'Web' do
     url = URI('http://localhost:8080/was/cdx?url=https://apod.nasa.gov/')
     resp = Net::HTTP.get_response(url)
     lines = resp.body.split("\n")
-    expect(lines.length).to eq(1)
+    expect(lines.length).to eq(3)
 
     surt, ts, payload_str = lines[0].split(' ', 3)
     expect(surt).to eq('gov,nasa,apod)/')
