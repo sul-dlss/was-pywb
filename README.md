@@ -11,15 +11,19 @@ When developing you can start the services, which will add some WARC and CDXJ da
 $ docker compose up --build --detach
 ```
 
-Then you should be able to open http://localhost:8080/ in your browser and select the `was` collection and lookup this URL:
+Then you should be able to open http://localhost:8080/ in your browser and select the `was` collection and lookup one of the following URLs:
 
-   https://apod.nasa.gov
+   - https://apod.nasa.gov
+   - https://stanford.edu
 
 If you would like to test other WARC data you can copy it into pywb container:
 
 ```
-$ docker compose cp test-data/data.warc.gz pywb:web-archiving-stacks/data/collections/data.warc.gz
+$ docker compose cp test-data/apod.warc.gz pywb:web-archiving-stacks/data/collections/apod.warc.gz
+$ docker compose cp test-data/stanford.warc.gz pywb:web-archiving-stacks/data/collections/stanford.warc.gz
 ```
+
+Note: Wildcard copies are not currently supported by docker, so the above command needs to be executed for each individual file (i.e. `apod.warc.gz`) that you would like to include for development/testing.
 
 Then you will need to update the index by running `cdx-indexer`:
 
