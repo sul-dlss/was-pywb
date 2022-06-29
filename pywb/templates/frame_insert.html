@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{ static_prefix }}/css/bootstrap.min.css" />
   <link rel="stylesheet" href="{{ static_prefix }}/css/font-awesome.min.css">
   <link rel="stylesheet" href="{{ static_prefix }}/css/base.css">
+  <link rel="stylesheet" href="{{ static_prefix }}/css/playback.css">
 
   <script src="{{ static_prefix }}/js/jquery-latest.min.js"></script>
   <script src="{{ static_prefix }}/js/bootstrap.min.js"></script>
@@ -51,6 +52,57 @@
     </div>
   </div>
 </body>
+
+<script>
+  window.onload = function () {
+    var titleElement = document.getElementById('_wb_ancillary_links')
+    var prevSpan = document.createElement("span")
+    prevSpan.setAttribute("class", "prev_capture")
+
+    var prevLink = document.createElement("a")
+    prevLink.setAttribute("id", "prev_capture_link")
+    prevLink.innerHTML = "< Previous Capture"
+    prevSpan.appendChild(prevLink)
+
+    var nextSpan = document.createElement("span")
+    nextSpan.setAttribute("class", "next_capture")
+    var nextLink = document.createElement("a")
+    nextLink.setAttribute("id", "next_capture_link")
+    nextLink.innerHTML = "Next Capture >"
+    nextSpan.appendChild(nextLink)
+
+    titleElement.insertBefore(prevSpan, titleElement.firstChild)
+    titleElement.appendChild(nextSpan)
+
+    var request = new XMLHttpRequest()
+    request.open('GET', '{{ wb_prefix }}cdx?url={{ url }}&output=json')
+    request.onload = function () {
+      var data = this.response.trim().split(/\r?\n/)
+      var currentTimestamp = '{{ wb_url.timestamp }}'
+      data.forEach(function (crawl, index, data) {
+        crawl = JSON.parse(crawl)
+        if (crawl.timestamp == currentTimestamp) {
+          // Get Previous Capture Link
+          if (index > 0) {
+            previousCapture = JSON.parse(data[index - 1])
+            prevLink.setAttribute("href", "{{ wb_prefix }}" + previousCapture.timestamp + "/{{ url }}")
+          } else {
+            prevLink.style.display = "none"
+          }
+
+          // Get Next Capture Link
+          if (index < data.length - 1) {
+            nextCapture = JSON.parse(data[index + 1])
+            nextLink.setAttribute("href", "{{ wb_prefix }}" + nextCapture.timestamp + "/{{ url }}")
+          } else {
+            nextLink.style.display = "none"
+          }
+        }
+      })
+    }
+    request.send()
+  };
+</script>
 
 </html>
 {% endautoescape %}
