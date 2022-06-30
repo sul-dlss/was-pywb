@@ -20,12 +20,12 @@ WAS_PLAYBACK = 'https://was-pywb-prod.stanford.edu/was/19900101mp_/'
 OptionParser.new do |parser|
   parser.on('-f', '--file PATH', 'The input file of URLs to use for benchmarking.')
   parser.on('-i', '--index', TrueClass, 'Visit the search results index for the given URLs.') do |index|
-    @opts[:index] = index.nil? ? false : true
+    @opts[:index] = !index.nil?
   end
   parser.on('-n', '--num INT', Integer, 'The number of times to visit the root path.')
   parser.on('-p', '--processes INT', Integer, 'The number of prcessses to run in parallel.')
   parser.on('-r', '--root-only', TrueClass, 'Only test the was-pywb homepage') do |root|
-    @opts[:root] = root.nil? ? false : true
+    @opts[:root] = !root.nil?
   end
   parser.on('-h', '--help') do
     puts parser
