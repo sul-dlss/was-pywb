@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/sul-dlss/was-pywb.svg?style=svg)](https://circleci.com/gh/sul-dlss/was-pywb)
+
 # was-pywb
 
 This repository contains configuration and utilities for the (soon to be released) [pywb] service running at swap.stanford.edu.
