@@ -10,12 +10,8 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <h4 class="display-4">
-            {% trans %}Stanford Web Archive Portal{% endtrans %}
-        </h4>
-    </div>
+<div class="row align-items-center bg-image" id="home_header">
+    <h2 class="display-2">{{ _('Stanford Web Archive Portal') }}</h2>
 </div>
 <div class="container mt-4">
     <form class="needs-validation" id="search-form" novalidate>
@@ -23,7 +19,7 @@
             <div class="col-12">
                 <label for="search-url" class="lead" aria-label="Search For Col">
                     {% set coll_title = metadata.title if metadata and metadata.title else coll %}
-                    {% trans %}Locate Archived Sites by URL:{% endtrans %}
+                    {% trans %}Locate archived sites by entering URL:{% endtrans %}
                 </label>
             </div>
             <div class="align-self-center col-1">https://</div>
@@ -44,18 +40,8 @@
                         }}</label>
                 </div>
             </div>
-            <div class="col-7">
-                <button type="submit" class="btn btn-outline-primary float-right" role="button" aria-label="Search">
-                    {% trans %}Go{% endtrans %}
-                </button>
-                <button class="btn btn-outline-info float-right mr-3" type="button" role="button" data-toggle="collapse"
-                    data-target="#advancedOptions" aria-expanded="false" aria-controls="advancedOptions"
-                    aria-label="Advanced Search Options">
-                    {{ _('Advanced Search Options') }}
-                </button>
-            </div>
         </div>
-        <div class="collapse mt-3" id="advancedOptions">
+        <div class="mt-3" id="advancedOptions">
             <div class="form-group form-row" style="visibility: hidden;">
                 <label for="match-type-select" class="col-sm-2 col-form-label" aria-label="Match Type">
                     {{ _('Match Type:') }}
@@ -68,11 +54,13 @@
                 </select>
             </div>
             <p style="cursor: help;">
-                <span data-toggle="tooltip" data-placement="right"
+                <span data-toggle="tooltip" data-placement="right" class="search-date-range"
                     title="Restricts the results to the given date/time range (inclusive)">
                     {{ _('Date Range (YYYYMMDD)') }}
                 </span>
+                <span class="note">- optional</span>
             </p>
+
             <div class="form-row">
                 <div class="col-6">
                     <label class="sr-only" for="dt-from" aria-label="Date/Time Range From">{% trans %}From:{% endtrans
@@ -157,7 +145,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-outline-primary float-left" role="button" aria-label="Search">
+                        {% trans %}Submit{% endtrans %}
+                    </button>
+                </div>
+            </div>
     </form>
+
 </div>
 {% if metadata %}
 <div class="container mt-4 justify-content-center">
