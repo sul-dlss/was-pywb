@@ -40,3 +40,41 @@ body {
 #_wb_frame_top_banner {
   margin-top: 49px;
 }
+
+#home_header {
+  background-image: url("/static/images/banner_background.png");
+  height: 5.6rem;
+  margin-top: -5px;
+}
+
+#home_header h2 {
+  font-size: 3.3rem;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.lead {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.search-date-range {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.note {
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.btn-outline-primary {
+  color: #8c1515;
+  border-color: #8c1515;
+}
+
+#advancedOptions {
+  height: 200px;
+}
