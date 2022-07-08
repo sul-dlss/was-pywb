@@ -17,10 +17,6 @@
   <script src="{{ static_prefix }}/js/bootstrap.min.js"></script>
   <script src='{{ static_prefix }}/wb_frame.js'> </script>
 
-  {% block head %}
-  {% include 'head.html' ignore missing %}
-  {% endblock %}
-
   {% autoescape false %}
 
   {{ banner_html }}
@@ -28,33 +24,39 @@
 </head>
 
 <body style="margin: 0px; padding: 0px;">
-  <div id="su-wrap">
-    <div id="su-content">
-      {% block header %}
-      {% include 'header.html' ignore missing %}
-      {% endblock %}
-
-      <section>
-        <div id="wb_iframe_div">
-          <iframe id="replay_iframe" frameborder="0" seamless="seamless" scrolling="yes" class="wb_iframe"
-            allow="autoplay; fullscreen"></iframe>
-        </div>
-        <script>
-          var cframe = new ContentFrame({
-            "url": "{{ url }}" + window.location.hash,
-            "prefix": "{{ wb_prefix }}",
-            "request_ts": "{{ wb_url.timestamp }}",
-            "iframe": "#replay_iframe"
-          });
-
-        </script>
-      </section>
-    </div>
+  <div id="wb_iframe_div">
+    <iframe id="replay_iframe" frameborder="0" seamless="seamless" scrolling="yes" class="wb_iframe"
+      allow="autoplay; fullscreen"></iframe>
   </div>
+  <script>
+    var cframe = new ContentFrame({
+      "url": "{{ url }}" + window.location.hash,
+      "prefix": "{{ wb_prefix }}",
+      "request_ts": "{{ wb_url.timestamp }}",
+      "iframe": "#replay_iframe"
+    });
+
+  </script>
 </body>
 
 <script>
   window.onload = function () {
+    // Add the SUL logo to the playback banner
+    var playbackBannerElement = document.getElementById('_wb_frame_top_banner')
+    var logoSpanElement = document.createElement("span")
+    logoSpanElement.setAttribute("class", "navbar")
+    var logoLinkElement = document.createElement("a")
+    logoLinkElement.setAttribute("href", "/")
+    logoLinkElement.setAttribute("aria-label", "Stanford Digital Repository")
+    var logoImgElement = document.createElement("img")
+    logoImgElement.setAttribute("src", "{{ static_prefix}}/images/StanfordLibraries-logo-whitetext.svg")
+    logoImgElement.setAttribute("height", "32")
+    logoImgElement.setAttribute("alt", "Stanford Digital Repository")
+    logoLinkElement.appendChild(logoImgElement)
+    logoSpanElement.appendChild(logoLinkElement)
+    playbackBannerElement.insertBefore(logoSpanElement, playbackBannerElement.firstChild)
+
+    // Get the ancillary links element to add capture links
     var titleElement = document.getElementById('_wb_ancillary_links')
     var prevSpan = document.createElement("span")
     prevSpan.setAttribute("class", "prev_capture")
