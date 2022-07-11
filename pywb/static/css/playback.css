@@ -7,5 +7,6 @@
 }
 
 #_wb_frame_top_banner {
+  /* !important is required to override a default !important from default_banner.css */
   background-color: #8c1515 !important;
 }
