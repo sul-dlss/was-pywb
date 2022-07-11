@@ -11,46 +11,34 @@
   <link rel="stylesheet" href="{{ static_prefix }}/css/bootstrap.min.css" />
   <link rel="stylesheet" href="{{ static_prefix }}/css/font-awesome.min.css">
   <link rel="stylesheet" href="{{ static_prefix }}/css/base.css">
-  <link rel="stylesheet" href="{{ static_prefix }}/css/playback.css">
 
   <script src="{{ static_prefix }}/js/jquery-latest.min.js"></script>
   <script src="{{ static_prefix }}/js/bootstrap.min.js"></script>
   <script src='{{ static_prefix }}/wb_frame.js'> </script>
 
-  {% block head %}
-  {% include 'head.html' ignore missing %}
-  {% endblock %}
-
   {% autoescape false %}
 
   {{ banner_html }}
 
+  <!-- This css should be last so that we can force overrides after default_banner.js is run. -->
+  <link rel="stylesheet" href="{{ static_prefix }}/css/playback.css">
+
 </head>
 
 <body style="margin: 0px; padding: 0px;">
-  <div id="su-wrap">
-    <div id="su-content">
-      {% block header %}
-      {% include 'header.html' ignore missing %}
-      {% endblock %}
-
-      <section>
-        <div id="wb_iframe_div">
-          <iframe id="replay_iframe" frameborder="0" seamless="seamless" scrolling="yes" class="wb_iframe"
-            allow="autoplay; fullscreen"></iframe>
-        </div>
-        <script>
-          var cframe = new ContentFrame({
-            "url": "{{ url }}" + window.location.hash,
-            "prefix": "{{ wb_prefix }}",
-            "request_ts": "{{ wb_url.timestamp }}",
-            "iframe": "#replay_iframe"
-          });
-
-        </script>
-      </section>
-    </div>
+  <div id="wb_iframe_div">
+    <iframe id="replay_iframe" frameborder="0" seamless="seamless" scrolling="yes" class="wb_iframe"
+      allow="autoplay; fullscreen"></iframe>
   </div>
+  <script>
+    var cframe = new ContentFrame({
+      "url": "{{ url }}" + window.location.hash,
+      "prefix": "{{ wb_prefix }}",
+      "request_ts": "{{ wb_url.timestamp }}",
+      "iframe": "#replay_iframe"
+    });
+
+  </script>
 </body>
 
 <script>
