@@ -1,0 +1,8 @@
+/* increasing contrast for accessibility */
+.list-group-item.active {
+  color: #0072ed;
+}
+
+.badge-info {
+  background-color: #008297;
+}
