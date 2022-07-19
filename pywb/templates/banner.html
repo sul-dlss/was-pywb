@@ -14,7 +14,9 @@ window.banner_info = {
     logoAlt: decodeURIComponent("{{ _Q('Logo') }}"),
     logoImg: "{{ static_prefix}}/images/StanfordLibraries-logo-whitetext.svg",
 
-    locale: "{{ env.pywb_lang | default('en') }}",
+    /* locale gets appended to the logoImg link. 
+    Setting to empty string since we are not using locales and it interferes with redirects to /was */
+    locale: "",
     curr_locale: "{{ env.pywb_lang }}",
     locales: {{ locales }},
     locale_prefixes: {{ get_locale_prefixes() | tojson }},
