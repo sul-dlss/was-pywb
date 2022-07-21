@@ -6,3 +6,7 @@
 .badge-info {
   background-color: #008297;
 }
+
+#su-wrap {
+  min-height: 0% !important;
+}
