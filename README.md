@@ -35,7 +35,7 @@ $ docker compose exec pywb cdxj-indexer /web-archiving-stacks/data/collections/ 
 
 ### Generating WARC data
 
-Consider the [warc file option of wget](https://wiki.archiveteam.org/index.php/Wget_with_WARC_output) to create local test warc data for indexing above.
+Consider the [--warc-file option of wget](https://wiki.archiveteam.org/index.php/Wget_with_WARC_output) or [ArchiveWeb.page](https://ArchiveWeb.page) (a Chrome extension) for creating local test WARC data. This can sometimes be helpful when trying to determine why certain sites are not replaying correctly.
 
 ## Test
 
