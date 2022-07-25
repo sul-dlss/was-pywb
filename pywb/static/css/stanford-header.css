@@ -75,6 +75,25 @@ body {
   border-color: #8c1515;
 }
 
-#advancedOptions {
-  height: 200px;
+.featured-sites-header {
+  font-size: 1.5rem;
+}
+
+.featured-sites-header-container {
+  border-bottom: 1px solid #d5d0c0;
+}
+
+.featured-sites a {
+  color: #3f3c30;
+  font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+  font-size: 1.2rem;
+}
+
+.featured-sites-thumbnail {
+  width: 100%;
+}
+
+.featured-sites-figure {
+  padding-left: 0;
+  padding-right: 2rem;
 }
