@@ -3,7 +3,7 @@
 # was-pywb
 
 This repository contains configuration and utilities for the (soon to be released) [pywb] service running at swap.stanford.edu.
-A Docker configuration is included for development, which uses [nginx] as a reverse proxy in front of pywb.
+A Docker configuration is included for development.
 
 ## Develop
 
@@ -50,7 +50,6 @@ and then running the tests in the pywb container:
 You can run the tests locally with `bundle exec rake` if you want, but you will need to have a working Python environment and pywb installed for them to pass.
 
 [pywb]: https://pywb.readthedocs.io/
-[nginx]: https://nginx.org/
 
 ## Deploy
 
