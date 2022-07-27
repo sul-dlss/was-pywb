@@ -43,19 +43,6 @@
       </div>
     </div>
     <div class="mt-3">
-      <!-- Disabled at product owner's request
-      <div class="form-group form-row">
-        <label for="match-type-select" class="col-sm-2 col-form-label" aria-label="Match Type">
-          {{ _('Match Type:') }}
-        </label>
-        <select id="match-type-select" class="form-control form-control col-sm-6">
-          <option value=""></option>
-          <option value="prefix">{% trans %}Prefix{% endtrans %}</option>
-          <option value="host">{% trans %}Host{% endtrans %}</option>
-          <option value="domain">{% trans %}Domain{% endtrans %}</option>
-        </select>
-      </div>
-      -->
       <div class="form-row mt-5 pt-3">
         <div class="col-12">
           <p style="cursor: help;">
@@ -92,62 +79,26 @@
           </div>
         </div>
       </div>
-      <!-- Disabled at product owner's request
-      <div class="form-group mt-3" style="visibility: hidden;">
-        <div class="form-row">
-          <div class="col-6">
-            <p>{% trans %}Filtering{% endtrans %}</p>
-          </div>
-          <div class="col-6">
-            <button id="clear-filters" class="btn btn-outline-warning float-right" type="button">
-              {% trans %}Clear Filters{% endtrans %}
-            </button>
-            <button id="add-filter" class="btn btn-outline-secondary float-right mr-2" type="button">
-              {% trans %}Add Filter{% endtrans %}
-            </button>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="col-6">
-            <div class="row pb-1">
-              <label for="filter-by" class="col-form-label col-3">{% trans %}By:{% endtrans %}</label>
-              <select id="filter-by" class="form-control col-7">
-                <option value="" selected></option>
-                <option value="mime">{% trans %}Mime Type{% endtrans %}</option>
-                <option value="status">{% trans %}Status{% endtrans %}</option>
-                <option value="url">{% trans %}URL{% endtrans %}</option>
-              </select>
-            </div>
-            <div class="row pb-1">
-              <label for="filter-modifier" class="col-form-label col-3">{% trans %}How:{% endtrans %}</label>
-              <select id="filter-modifier" class="form-control col-7">
-                <option value="=">{% trans %}Contains{% endtrans %}</option>
-                <option value="==">{% trans %}Matches Exactly{% endtrans %}</option>
-                <option value="=~">{% trans %}Matches Regex{% endtrans %}</option>
-                <option value="=!">{% trans %}Does Not Contain{% endtrans %}</option>
-                <option value="=!=">{% trans %}Is Not{% endtrans %}</option>
-                <option value="=!~">{% trans %}Does Not Begins With{% endtrans %}</option>
-              </select>
-            </div>
-            <div class="row">
-              <label for="filter-expression" class="col-form-label col-3">{% trans %}Expr:{% endtrans %}</label>
-              <input type="text" id="filter-expression" class="form-control col-7" placeholder="Enter an expression to filter by">
-            </div>
-          </div>
-          <div class="col-6">
-            <ul id="filter-list" class="filter-list">
-              <li id="filtering-nothing">{% trans %}No Filter{% endtrans %}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      -->
     </div>
     <div class="form-row mt-5 pt-3">
       <button type="submit" class="btn btn-outline-primary float-left" role="button" aria-label="Submit">
         {% trans %}Submit{% endtrans %}
       </button>
     </div>
+
+    <!--
+      At Peter Chan's request we've removed advanced search options to filter
+      by match type and mimetype. However static/search.js, which submits the
+      form, wants to bind events to some of those form elements. These hidden
+      elements will allow that code to continue to work eventhough we've removed
+      the form elements themselves.
+    -->
+
+    <input id="add-filter" type="hidden" value=""> 
+    <input id="clear-filters" type="hidden" value="">
+    <input id="filter-list" type="hidden" value="">
+    <input id="match-type-select" type="hidden" value="">
+
   </form>
   <div class="row mt-5 featured-sites-header-container">
     <p class="featured-sites-header">
