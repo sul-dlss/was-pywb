@@ -57,8 +57,6 @@ The was-pywb application is deployable via Capistrano like our other team projec
 
 It is also deployable via the sdr-deploy application for mass-deploys (e.g., for weekly dependency updates).
 
-**NOTE**: Every time was-pywb is deployed, `pip3 install -r requirements.txt` is run which---given none of the app's dependencies have been pinned to particular versions---should always result in running the app on the latest matrix of dependencies that work together. Thus, no weekly update PRs (via JenkinsCI) are needed for was-pywb.
-
 ## Performance Benchmarking
 
 The `bin/benchmark` script provides a means of establishing performance metrics against was-pywb.

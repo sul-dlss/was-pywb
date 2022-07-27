@@ -109,7 +109,7 @@ class Indexer
     @log.info("generating cdxj #{cdxj} for #{warc_file}")
     unless system(*cmd)
       @log.error("cdxj error while parsing #{warc_file}")
-      cdxj_temp.unlink
+      FileUtils.rm_f(cdxj_temp)
       return
     end
 

@@ -71,19 +71,22 @@ namespace :uwsgi do
   end
 end
 
-namespace :pip do
-  desc 'Install python dependencies via pip'
+namespace :poetry do
+  desc 'Install python dependencies via poetry and pip'
   task :install do
     on roles(:app) do
-      within "#{current_path}/pywb" do
-        execute :pip3, :install, '--upgrade', '--requirement requirements.txt'
+      within("#{current_path}/pywb") do
+        # Make sure python executables are on the PATH
+        with(path: '$HOME/.local/bin:$PATH') do
+          execute :pip3, :install, '--requirement requirements.txt'
+          execute :poetry, :install
+        end
       end
     end
   end
 end
 
-before 'deploy:updated', 'pip:install'
-before 'deploy:reverted', 'pip:install'
-after 'deploy:publishing', 'uwsgi:restart'
 # update shared_configs before restarting app (from dlss-capistrano gem)
 before 'deploy:publishing', 'shared_configs:update'
+after 'deploy:publishing', 'uwsgi:restart'
+before 'uwsgi:restart', 'poetry:install'

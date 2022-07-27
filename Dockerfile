@@ -28,7 +28,8 @@ RUN bundle install
 
 # Python depdendencies for pywb
 WORKDIR /home/was/swap/current/pywb
-RUN pip3 install --upgrade --requirement requirements.txt
+RUN pip3 install --requirement requirements.txt
+RUN poetry install
 
 # run!
-CMD ["uwsgi", "uwsgi.ini"]
+CMD ["poetry", "run", "uwsgi", "uwsgi.ini"]
