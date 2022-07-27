@@ -1,0 +1,19 @@
+#!/bin/bash
+
+CLONE_LOCATION=${WORKSPACE:-$TMPDIR}
+
+# This script is called by our weekly dependency update job in Jenkins, before updating Ruby and other deps
+cd pywb/
+
+poetry update > $CLONE_LOCATION/.autoupdate/poetry_report/was-pywb.txt &&
+    git add poetry.lock &&
+    git commit -m "Update Python dependencies"
+
+retVal=$?
+
+if [ $retVal -ne 0 ]; then
+    echo "ERROR UPDATING PYTHON (was-pywb)"
+    cat $CLONE_LOCATION/.autoupdate/poetry_report/was-pywb.txt
+fi
+
+cd ..
