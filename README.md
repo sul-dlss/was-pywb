@@ -2,8 +2,8 @@
 
 # was-pywb
 
-This repository contains configuration and utilities for the (soon to be released) [pywb] service running at swap.stanford.edu.
-A Docker configuration is included for development.
+This repository contains configuration and utilities for the [pywb] service running at swap.stanford.edu. A Docker configuration is included for development purposes. If you'd like to participate in discussion about the service please join the *#web-archiving* Slack channel, and subscribe to the 
+[sul-was-support](https://mailman.stanford.edu/mailman/listinfo/sul-was-support) discussion list.
 
 ## Develop
 
