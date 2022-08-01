@@ -30,7 +30,7 @@ Note: Wildcard copies are not currently supported by docker, so the above comman
 Then you will need to update the index by running `cdx-indexer`:
 
 ```
-$ docker compose exec pywb cdxj-indexer /web-archiving-stacks/data/collections/ --output /web-archiving-stacks/data/indexes/index.cdxj --sort --post-append
+$ docker compose exec pywb cdxj-indexer /web-archiving-stacks/data/collections/ --output /web-archiving-stacks/data/indexes/cdxj/index.cdxj --sort --post-append
 ```
 
 ### Generating WARC data
