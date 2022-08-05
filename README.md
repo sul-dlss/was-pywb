@@ -37,6 +37,10 @@ $ docker compose exec pywb cdxj-indexer /web-archiving-stacks/data/collections/ 
 
 Consider the [--warc-file option of wget](https://wiki.archiveteam.org/index.php/Wget_with_WARC_output) or [ArchiveWeb.page](https://ArchiveWeb.page) (a Chrome extension) for creating local test WARC data. This can sometimes be helpful when trying to determine why certain sites are not replaying correctly.
 
+## Debugging
+
+Sometimes you may be trying to determine why a given web page that was archived isn't playing back correctly. This could be the case where a particular URL isn't found at all, or (more commonly) when a given page doesn't completely display (missing images, or other content). Since there are many reasons why this can happen there is a separate [Debugging](https://github.com/sul-dlss/was-pywb/wiki/Debugging) for working with these issues.
+
 ## Test
 
 You can run the unit tests by starting the docker containers:
