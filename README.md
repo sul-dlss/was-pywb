@@ -27,10 +27,10 @@ $ docker compose cp test-data/stanford.warc.gz pywb:web-archiving-stacks/data/co
 
 Note: Wildcard copies are not currently supported by docker, so the above command needs to be executed for each individual file (i.e. `apod.warc.gz`) that you would like to include for development/testing.
 
-Then you will need to update the index by running `cdx-indexer`:
+Then you will need to update the index by running `cdxj-indexer` (using the Poetry Python environment):
 
 ```
-$ docker compose exec pywb cdxj-indexer /web-archiving-stacks/data/collections/ --output /web-archiving-stacks/data/indexes/cdxj/index.cdxj --sort --post-append
+$ docker compose exec pywb poetry run cdxj-indexer /web-archiving-stacks/data/collections/ --output /web-archiving-stacks/data/indexes/cdxj/index.cdxj --sort --post-append
 ```
 
 ### Generating WARC data
