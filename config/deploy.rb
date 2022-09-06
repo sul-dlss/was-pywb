@@ -78,7 +78,7 @@ namespace :poetry do
       within("#{current_path}/pywb") do
         # Make sure python executables are on the PATH
         with(path: '$HOME/.local/bin:$PATH') do
-          execute :pip3, :install, '--requirement requirements.txt'
+          execute :pip3, :install, '--upgrade --requirement requirements.txt'
           execute :poetry, :install
         end
       end
