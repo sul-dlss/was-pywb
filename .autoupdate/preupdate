@@ -9,11 +9,12 @@ export LANG=en_US.UTF-8
 export LC_COLLATE=C.UTF-8
 
 pip3 install --upgrade --requirement requirements.txt > was-pywb.txt &&
-    ~/.local/bin/poetry update -n --no-ansi >> was-pywb.txt &&
-    git add poetry.lock &&
-    git commit -m "Update Python dependencies"
+    ~/.local/bin/poetry update -n --no-ansi >> was-pywb.txt
 
 retVal=$?
+
+git add poetry.lock &&
+    git commit -m "Update Python dependencies"
 
 if [ $retVal -ne 0 ]; then
     echo "ERROR UPDATING PYTHON (was-pywb)"
