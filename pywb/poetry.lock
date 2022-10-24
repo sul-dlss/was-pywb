@@ -183,7 +183,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "portalocker"
-version = "2.5.1"
+version = "2.6.0"
 description = "Wraps the portalocker recipe for easy usage"
 category = "main"
 optional = false
@@ -857,8 +857,8 @@ markupsafe = [
     {file = "MarkupSafe-2.0.1.tar.gz", hash = "sha256:594c67807fb16238b30c44bdf74f36c02cdf22d1c8cda91ef8a0ed8dabf5620a"},
 ]
 portalocker = [
-    {file = "portalocker-2.5.1-py2.py3-none-any.whl", hash = "sha256:400bae275366e7b840d4baad0654c6ec5994e07c40c423d78e9e1340279b8352"},
-    {file = "portalocker-2.5.1.tar.gz", hash = "sha256:ae8e9cc2660da04bf41fa1a0eef7e300bb5e4a5869adfb1a6d8551632b559b2b"},
+    {file = "portalocker-2.6.0-py2.py3-none-any.whl", hash = "sha256:102ed1f2badd8dec9af3d732ef70e94b215b85ba45a8d7ff3c0003f19b442f4e"},
+    {file = "portalocker-2.6.0.tar.gz", hash = "sha256:964f6830fb42a74b5d32bce99ed37d8308c1d7d44ddf18f3dd89f4680de97b39"},
 ]
 py3amf = [
     {file = "Py3AMF-0.8.10.tar.gz", hash = "sha256:6dac2d34a09daf5351e654e8cdc3026b3560a6db498c17cdcc84322b3149952c"},
