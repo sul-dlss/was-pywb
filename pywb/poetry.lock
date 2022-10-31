@@ -408,7 +408,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [[package]]
 name = "uwsgi"
-version = "2.0.20"
+version = "2.0.21"
 description = "The uWSGI server"
 category = "main"
 optional = false
@@ -966,7 +966,7 @@ urllib3 = [
     {file = "urllib3-1.26.12.tar.gz", hash = "sha256:3fa96cf423e6987997fc326ae8df396db2a8b7c667747d47ddd8ecba91f4a74e"},
 ]
 uwsgi = [
-    {file = "uwsgi-2.0.20.tar.gz", hash = "sha256:88ab9867d8973d8ae84719cf233b7dafc54326fcaec89683c3f9f77c002cdff9"},
+    {file = "uwsgi-2.0.21.tar.gz", hash = "sha256:35a30d83791329429bc04fe44183ce4ab512fcf6968070a7bfba42fc5a0552a9"},
 ]
 warcio = [
     {file = "warcio-1.7.4-py2.py3-none-any.whl", hash = "sha256:ced1a162d76434d56abd81b37ac152821d1a11e1db835ead5d649f58068c2203"},
