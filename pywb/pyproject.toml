@@ -7,7 +7,7 @@ license = "Apache 2.0"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-pywb = "^2.6.7"
+pywb = "~2.6.7"
 uWSGI = "^2.0.20"
 cdxj-indexer = "^1.4.5"
 
