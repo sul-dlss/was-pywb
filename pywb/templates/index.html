@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block title %}{{ _('Stanford Web Archive Portal') }}{% endblock %}
 {% block body %}
+{% block stanford_header %}
+{% include 'stanford_header.html' ignore missing %}
+{% endblock %}
 <div class="row align-items-center bg-image" id="home_header">
     <h2 class="display-2">{{ _('Stanford Web Archive Portal') }}</h2>
 </div>
@@ -11,8 +14,8 @@
             <li>
                 <a href="{{ env['pywb.app_prefix'] + ('/' + env.pywb_lang if env.pywb_lang else '') + '/' + route }}">{{
                     '/' + route }}</a>
-                {% if all_metadata and all_metadata[route] %}
-                ({{ all_metadata[route].title }})
+                {% if all_metadata and all_metadata[route].title %}
+                  ({{ all_metadata[route].title }})
                 {% endif %}
             </li>
             {% endfor %}

@@ -1,6 +1,5 @@
 #su-content {
   height: 100%;
-  padding-bottom: 330x !important;
 }
 
 #sul-footer-container {
@@ -8,14 +7,13 @@
   -webkit-box-shadow: 0 4px 8px -8px rgba(0, 0, 0, .2) inset;
   box-shadow: 0 4px 8px -8px rgba(0, 0, 0, .2) inset;
   clear: both;
-  min-height: 330px;
+  min-height: 220px;
   padding: 0 !important;
   position: relative;
   width: 100%;
 }
 
 #sul-footer .span2 {
-  display: table;
   height: 80px;
 }
 
