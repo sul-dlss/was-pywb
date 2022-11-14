@@ -501,7 +501,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "9675c2ab994d2554fc2d128ba39663c76e9a09bfddd4c291af64a2a403017013"
+content-hash = "60158fa696cfe70c9ed20c387d81c19017346a9a5e2f08c29eaf3a88e3c29c00"
 
 [metadata.files]
 brotlipy = [
