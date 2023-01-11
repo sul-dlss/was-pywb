@@ -37,10 +37,6 @@ body {
   }
 }
 
-#_wb_frame_top_banner {
-  margin-top: 49px;
-}
-
 #home_header {
   background-image: url("/static/images/banner_background.png");
   height: 5.6rem;

@@ -5,3 +5,8 @@ collections:
       - /web-archiving-stacks/data/collections/
     acl_paths: /web-archiving-stacks/data/access.aclj
 
+ui:
+  logo: images/swaplogo.png
+  navbar_background_hex: 343a40
+  navbar_color_hex: ffffff
+  navbar_light_buttons: ffffff
