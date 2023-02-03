@@ -1,0 +1,64 @@
+{% if not env.pywb_proxy_magic or config.proxy.enable_banner | default(true) %}
+{% autoescape false %}
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S1G1JW9N91"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-S1G1JW9N91');
+
+  /*
+  Add a Google Analytics event to track the hostname for the archived page that
+  was viewed. This is useful for seeing what archived content is being viewed in
+  SWAP.
+  
+  For example when a user views this URL in their browser:
+  
+  https://swap.stanford.edu/was/20220611113312mp_/https://www.stanford.edu/research/
+  
+  This would result in a "host-view" event being sent to Google Analytics with "host" 
+  set to "stanford.edu". Note the stripping of leading "www".
+  */
+
+  try {
+    const archivedUrl = new URL("{{ url }}");
+    const archivedHost = archivedUrl.hostname.replace('www.', '');
+    gtag('event', 'archive-view', {'host': archivedHost});
+  } catch (error) {
+    console.log(`Can't send Google Analytics host-view event: ${error}`);
+  }
+
+</script>
+
+<script>
+window.banner_info = {
+    is_gmt: true,
+
+    liveMsg: decodeURIComponent("{{ _Q('Live on') }}"),
+
+    calendarAlt: decodeURIComponent("{{ _Q('Calendar icon') }}"),
+    calendarLabel: decodeURIComponent("{{ _Q('View All Captures') }}"),
+    choiceLabel: decodeURIComponent("{{ _Q('Language:') }}"),
+    loadingLabel: decodeURIComponent("{{ _Q('Loading...') }}"),
+    logoAlt: decodeURIComponent("{{ _Q('Logo') }}"),
+
+    locale: "{{ env.pywb_lang | default('en') }}",
+    curr_locale: "{{ env.pywb_lang }}",
+    locales: {{ locales }},
+    locale_prefixes: {{ get_locale_prefixes() | tojson }},
+    prefix: "{{ wb_prefix }}",
+    staticPrefix: "{{ static_prefix }}",
+
+    logoImg: "{{ ui.logo }}"
+};
+</script>
+<script src="{{ static_prefix }}/loading-spinner/loading-spinner.js"></script>
+<script src="{{ static_prefix }}/vue/vueui.js"></script>
+<link rel="stylesheet" href='{{ static_prefix }}/vue_banner.css'/>
+
+{% include 'bootstrap_jquery.html' ignore missing %}
+
+{% endautoescape %}
+{% endif %}
