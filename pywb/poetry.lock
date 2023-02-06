@@ -706,14 +706,14 @@ six = ">=1.5"
 
 [[package]]
 name = "pywb"
-version = "2.7.2"
+version = "2.7.3"
 description = "Pywb Webrecorder web archive replay and capture tools"
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "pywb-2.7.2-py2.py3-none-any.whl", hash = "sha256:fba2eff7cd6e74d33a4083edda548b4f4086f061c65cb50cb71706b5445d4a66"},
-    {file = "pywb-2.7.2.tar.gz", hash = "sha256:6214ddad4b49321f1c247d9ebd70623b1c6d545e9eaa3be47b324f310269d171"},
+    {file = "pywb-2.7.3-py2.py3-none-any.whl", hash = "sha256:52463f09b89f9df7267af90c799b7d88c27906fad214d1361cab227923258d25"},
+    {file = "pywb-2.7.3.tar.gz", hash = "sha256:b94d85f3aff169aa22477281bda520716e307f9a2f8e2cd48a2105bdfb322753"},
 ]
 
 [package.dependencies]
@@ -860,14 +860,14 @@ six = "*"
 
 [[package]]
 name = "setuptools"
-version = "67.0.0"
+version = "67.1.0"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "setuptools-67.0.0-py3-none-any.whl", hash = "sha256:9d790961ba6219e9ff7d9557622d2fe136816a264dd01d5997cfc057d804853d"},
-    {file = "setuptools-67.0.0.tar.gz", hash = "sha256:883131c5b6efa70b9101c7ef30b2b7b780a4283d5fc1616383cdf22c83cbefe6"},
+    {file = "setuptools-67.1.0-py3-none-any.whl", hash = "sha256:a7687c12b444eaac951ea87a9627c4f904ac757e7abdc5aac32833234af90378"},
+    {file = "setuptools-67.1.0.tar.gz", hash = "sha256:e261cdf010c11a41cb5cb5f1bf3338a7433832029f559a6a7614bd42a967c300"},
 ]
 
 [package.extras]
