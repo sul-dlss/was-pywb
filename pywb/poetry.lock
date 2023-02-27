@@ -639,13 +639,13 @@ tests = ["pytest (>=5.4.1)", "pytest-cov (>=2.8.1)", "pytest-mypy (>=0.8.0)", "p
 
 [[package]]
 name = "py3amf"
-version = "0.8.10"
+version = "0.8.11"
 description = "AMF support for Python"
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "Py3AMF-0.8.10.tar.gz", hash = "sha256:6dac2d34a09daf5351e654e8cdc3026b3560a6db498c17cdcc84322b3149952c"},
+    {file = "Py3AMF-0.8.11-py3-none-any.whl", hash = "sha256:dd81e7f98640a70a2ecefc2ea39b11bb75887239dbb1a82cf4e753a294aafb68"},
 ]
 
 [package.dependencies]
@@ -654,11 +654,10 @@ defusedxml = "*"
 [package.extras]
 django = ["Django (>=0.96)"]
 elixir = ["Elixir (>=0.7.1)"]
-lxml = ["lxml (>=2.2)"]
+lxml = ["lxml (>=4.4.0)"]
 six = ["six (>=1.10.0)"]
 sqlalchemy = ["SQLAlchemy (>=0.4)"]
-twisted = ["Twisted (>=2.5.0)"]
-wsgi = ["wsgiref"]
+twisted = ["Twisted (>=16.0.0)"]
 
 [[package]]
 name = "pycparser"
@@ -862,14 +861,14 @@ six = "*"
 
 [[package]]
 name = "setuptools"
-version = "67.3.2"
+version = "67.4.0"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "setuptools-67.3.2-py3-none-any.whl", hash = "sha256:bb6d8e508de562768f2027902929f8523932fcd1fb784e6d573d2cafac995a48"},
-    {file = "setuptools-67.3.2.tar.gz", hash = "sha256:95f00380ef2ffa41d9bba85d95b27689d923c93dfbafed4aecd7cf988a25e012"},
+    {file = "setuptools-67.4.0-py3-none-any.whl", hash = "sha256:f106dee1b506dee5102cc3f3e9e68137bbad6d47b616be7991714b0c62204251"},
+    {file = "setuptools-67.4.0.tar.gz", hash = "sha256:e5fd0a713141a4a105412233c63dc4e17ba0090c8e8334594ac790ec97792330"},
 ]
 
 [package.extras]
