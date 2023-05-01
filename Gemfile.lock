@@ -30,14 +30,14 @@ GEM
       capistrano-one_time_key
       capistrano-shared_configs
     honeybadger (5.2.1)
-    i18n (1.12.0)
+    i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     json (2.6.3)
     net-scp (4.0.0)
       net-ssh (>= 2.6.5, < 8.0.0)
     net-ssh (7.1.0)
     parallel (1.23.0)
-    parser (3.2.2.0)
+    parser (3.2.2.1)
       ast (~> 2.4.1)
     rainbow (3.1.1)
     rake (13.0.6)
