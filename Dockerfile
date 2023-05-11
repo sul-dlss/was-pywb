@@ -1,9 +1,8 @@
-FROM ubuntu:20.04
+FROM ruby:3.2.2
 RUN apt update
 
-# install python and ruby
-RUN apt install -y python3-dev python3-pip ruby ruby-dev
-RUN gem install bundler
+# install python
+RUN apt install -y python3-dev python3-pip
 
 # create the directory where WARC data and CDX indexes live
 RUN mkdir -p /web-archiving-stacks/data/collections/
@@ -23,10 +22,11 @@ WORKDIR /home/was/swap/current/
 ADD . /home/was/swap/current
 
 # Ruby dependencies for testing and indexing
+RUN gem install bundler
 RUN bundle config git.allow_insecure true
 RUN bundle install
 
-# Python depdendencies for pywb
+# Python dependencies for pywb
 WORKDIR /home/was/swap/current/pywb
 RUN pip3 install --requirement requirements.txt
 RUN poetry install

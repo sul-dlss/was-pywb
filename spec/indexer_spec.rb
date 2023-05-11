@@ -17,7 +17,7 @@ RSpec.describe Indexer do
   end
 
   it 'finds warc files' do
-    indexer = described_class.new(warcs_dir: warcs_dir, indexes_dir: indexes_dir)
+    indexer = described_class.new(warcs_dir:, indexes_dir:)
     warc_files = indexer.find_warc_files
     expect(warc_files.length).to eq(2)
     expect(warc_files[0].basename.to_s).to eq('apod.warc.gz')
@@ -25,7 +25,7 @@ RSpec.describe Indexer do
   end
 
   it 'indexes warc files' do
-    indexer = described_class.new(warcs_dir: warcs_dir, indexes_dir: indexes_dir)
+    indexer = described_class.new(warcs_dir:, indexes_dir:)
     indexer.run
 
     index_files = Pathname(indexes_dir).find.filter(&:file?)

@@ -6,10 +6,15 @@ workflows:
     jobs:
       - ruby-rails/lint:
           name: lint
+          executor:
+            name: ruby-rails/ruby
+            ruby-tag: '3.2.2'
       - test
 jobs:
   test:
-    executor: ruby-rails/ruby
+    executor:
+      name: ruby-rails/ruby
+      ruby-tag: '3.2.2'
     steps:
       - checkout
       - setup_remote_docker
