@@ -1,3 +1,0 @@
-poetry
-# installing requests for poetry to retrieve https pywb 2.7 dependency on GitHub
-requests
