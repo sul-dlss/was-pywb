@@ -1,8 +1,8 @@
-FROM ruby:3.2.2
+FROM python:3.9
 RUN apt update
 
 # install python
-RUN apt install -y python3-dev python3-pip
+RUN apt install -y ruby-full
 
 # create the directory where WARC data and CDX indexes live
 RUN mkdir -p /web-archiving-stacks/data/collections/
@@ -28,7 +28,7 @@ RUN bundle install
 
 # Python dependencies for pywb
 WORKDIR /home/was/swap/current/pywb
-RUN pip3 install --requirement requirements.txt
+RUN pip install -r requirements.txt
 RUN poetry install
 
 # run!
