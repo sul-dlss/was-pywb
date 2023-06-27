@@ -8,7 +8,7 @@ cd pywb/
 export LANG=en_US.UTF-8
 export LC_COLLATE=C.UTF-8
 
-pip3 install --upgrade --requirement requirements.txt > was-pywb.txt &&
+pip3 install poetry > was-pywb.txt &&
     ~/.local/bin/poetry update -n --no-ansi >> was-pywb.txt
 
 retVal=$?
