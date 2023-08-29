@@ -108,3 +108,13 @@ And benchmarking the search results index pages for each given URL as well:
 ```
 bin/benchmark -f spec/fixtures/urls.txt -p 100 -i
 ```
+
+## Reset Process (For QA/Stage)
+
+### Steps
+
+1. Clear collections: `rm -rf /web-archiving-stacks/data/collections/*`
+2. Clear indexes: `rm -rf /web-archiving-stacks/data/indexes/*`
+3. After `was-registrar-app` has been reset:
+    i. Run the `web_archive_accessioning_spec` (`bundle exec rspec spec/features/web_archiving_accessioning_spec.rb`) integration test and verify that a `One-time WARC` is created.
+    ii. Verify that `https://library.stanford.edu/sites/all/themes/sulair2016/logo.svg` is indexed: https://swap-stage.stanford.edu/was/*/https://library.stanford.edu/sites/all/themes/sulair2016/logo.svg
