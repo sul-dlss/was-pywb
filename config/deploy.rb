@@ -78,7 +78,7 @@ namespace :poetry do
       within("#{current_path}/pywb") do
         # Make sure python executables are on the PATH
         with(path: '$HOME/.local/bin:$PATH') do
-          execute :pip3, :install, 'poetry'
+          execute :pip3, :install, '--upgrade', 'poetry'
           execute :poetry, :env, :use, '/usr/bin/python3.11'
           execute :poetry, :install
         end
