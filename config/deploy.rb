@@ -79,6 +79,7 @@ namespace :poetry do
         # Make sure python executables are on the PATH
         with(path: '$HOME/.local/bin:$PATH') do
           execute :pip3, :install, 'poetry'
+          execute :poetry, :env, :use, '/usr/bin/python3.11'
           execute :poetry, :install
         end
       end

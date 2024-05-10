@@ -1,5 +1,6 @@
 web-archiving-stacks/
 !pywb/collections/**/.keep
+.python-version
 
 *.log
 
