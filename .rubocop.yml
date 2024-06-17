@@ -1,6 +1,9 @@
 require:
+  - rubocop-capybara
+  - rubocop-factory_bot
   - rubocop-rake
   - rubocop-rspec
+  - rubocop-rspec_rails
 
 inherit_from: .rubocop_todo.yml
 
@@ -145,7 +148,7 @@ RSpec/VerifiedDoubleReference: # new in 2.10.0
   Enabled: true
 FactoryBot/SyntaxMethods: # new in 2.7
   Enabled: true
-RSpec/Rails/AvoidSetupHook: # new in 2.4
+RSpecRails/AvoidSetupHook: # new in 2.4
   Enabled: true
 
 Layout/LineContinuationLeadingSpace: # new in 1.31
@@ -162,7 +165,7 @@ Style/EmptyHeredoc: # new in 1.32
   Enabled: true
 Capybara/SpecificMatcher: # new in 2.12
   Enabled: true
-RSpec/Rails/HaveHttpStatus: # new in 2.12
+RSpecRails/HaveHttpStatus: # new in 2.12
   Enabled: true
 
 Style/MagicCommentFormat: # new in 1.35
@@ -256,9 +259,9 @@ RSpec/SkipBlockInsideExample: # new in 2.19
   Enabled: true
 RSpec/SortMetadata: # new in 2.14
   Enabled: true
-RSpec/Rails/InferredSpecType: # new in 2.14
+RSpecRails/InferredSpecType: # new in 2.14
   Enabled: true
-RSpec/Rails/MinitestAssertions: # new in 2.17
+RSpecRails/MinitestAssertions: # new in 2.17
   Enabled: true
-RSpec/Rails/TravelAround: # new in 2.19
+RSpecRails/TravelAround: # new in 2.19
   Enabled: true
