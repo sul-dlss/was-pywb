@@ -29,6 +29,9 @@ RUN bundle install
 # Python dependencies for pywb
 WORKDIR /home/was/swap/current/pywb
 RUN pip3 install poetry
+RUN echo "setuptools<72" > constraints.txt
+ENV PIP_CONSTRAINT=constraints.txt
+RUN poetry run pip install surt==0.3.1
 RUN poetry install
 
 # run!
