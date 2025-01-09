@@ -8,6 +8,31 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-S1G1JW9N91');
+
+  /*
+  Add a Google Analytics event to track the hostname for the archived page that
+  is being viewed. This is useful for seeing what archived content is being viewed in
+  SWAP.
+  
+  For example when a user views this URL in their browser:
+  
+  https://swap.stanford.edu/was/20220611113312/https://www.stanford.edu/research/
+  
+  This would result in a "host-view" event being sent to Google Analytics with "host" 
+  set to "stanford.edu". Note the stripping of leading "www".
+  */
+
+  const match = window.location.pathname.match(/\d+\/(https?:\/\/.*)/);
+  if (match !== null) {
+    // guard against an invalid URL exception when constructing the URL
+    try {
+      const url = new URL(match[1]);
+      const archivedHost = url.hostname.replace('www.', '');
+      gtag('event', 'archive-view', {'host': archivedHost});
+    } catch(error) {
+      console.log(`Can't send Google Analytics host-view event: ${error}`);
+    }
+  }
 </script>
 
 <script>
