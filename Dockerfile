@@ -28,8 +28,8 @@ RUN bundle install
 
 # Python dependencies for pywb
 WORKDIR /home/was/swap/current/pywb
-RUN pip3 install poetry
-RUN poetry install
+RUN pip3 install uv
+RUN uv sync
 
 # run!
-CMD ["poetry", "run", "uwsgi", "uwsgi.ini"]
+CMD ["uv", "run", "uwsgi", "uwsgi.ini"]

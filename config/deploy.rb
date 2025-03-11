@@ -71,16 +71,18 @@ namespace :uwsgi do
   end
 end
 
-namespace :poetry do
-  desc 'Install python dependencies via poetry and pip'
+namespace :pydeps do
+  desc 'Install python dependencies'
   task :install do
     on roles(:app) do
-      within("#{current_path}/pywb") do
+      within("#{release_path}/pywb") do
         # Make sure python executables are on the PATH
         with(path: '$HOME/.local/bin:$PATH') do
-          execute :pip3, :install, '--upgrade', 'poetry'
-          execute :poetry, :env, :use, '/usr/bin/python3.11'
-          execute :poetry, :install
+          execute :pip3, :install, '--user', '--upgrade', 'pipx'
+          execute :pipx, :install, 'uv', '--force'
+          # ensure latest uv -- pipx install doesn't have an --upgrade flag
+          execute :pipx, :upgrade, 'uv'
+          execute :uv, :sync, '--python', '3.11'
         end
       end
     end
@@ -90,4 +92,4 @@ end
 # update shared_configs before restarting app (from dlss-capistrano gem)
 before 'deploy:publishing', 'shared_configs:update'
 after 'deploy:publishing', 'uwsgi:restart'
-before 'uwsgi:restart', 'poetry:install'
+before 'uwsgi:restart', 'pydeps:install'

@@ -4,16 +4,20 @@
 cd pywb/
 
 # Without these ENV changes, python gets confused and tries to use latin1
-# encodings which breaks the poetry update below
+# encodings which breaks the updates below
 export LANG=en_US.UTF-8
 export LC_COLLATE=C.UTF-8
 
-pip3 install poetry > was-pywb.txt &&
-    ~/.local/bin/poetry update -n --no-ansi >> was-pywb.txt
+# Needed to successfully run `pipx`-installed executables
+export PATH="$HOME/.local/bin:$PATH"
+
+pip3 install --user pipx > was-pywb.txt &&
+    pipx install uv --force >> was-pywb.txt &&
+    uv lock --upgrade -q --no-progress --color never >> was-pywb.txt
 
 retVal=$?
 
-git add poetry.lock &&
+git add uv.lock &&
     git commit -m "Update Python dependencies"
 
 if [ $retVal -ne 0 ]; then
