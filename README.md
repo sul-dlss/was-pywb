@@ -2,7 +2,7 @@
 
 # was-pywb
 
-This repository contains configuration and utilities for the [pywb] service running at swap.stanford.edu. A Docker configuration is included for development purposes. If you'd like to participate in discussion about the service please join the *#web-archiving* Slack channel, and subscribe to the 
+This repository contains configuration and utilities for the [pywb] service running at swap.stanford.edu. A Docker configuration is included for development purposes. If you'd like to participate in discussion about the service please join the *#web-archiving* Slack channel, and subscribe to the
 [sul-was-support](https://mailman.stanford.edu/mailman/listinfo/sul-was-support) discussion list.
 
 ## Develop
@@ -27,10 +27,10 @@ $ docker compose cp test-data/stanford.warc.gz pywb:web-archiving-stacks/data/co
 
 Note: Wildcard copies are not currently supported by docker, so the above command needs to be executed for each individual file (i.e. `apod.warc.gz`) that you would like to include for development/testing.
 
-Then you will need to update the index by running `cdxj-indexer` (using the Poetry Python environment):
+Then you will need to update the index by running `cdxj-indexer` (using the UV Python environment):
 
 ```
-$ docker compose exec pywb poetry run cdxj-indexer /web-archiving-stacks/data/collections/ --output /web-archiving-stacks/data/indexes/cdxj/index.cdxj --sort --post-append
+$ docker compose exec pywb uv run cdxj-indexer /web-archiving-stacks/data/collections/ --output /web-archiving-stacks/data/indexes/cdxj/index.cdxj --sort --post-append
 ```
 
 ### Generating WARC data
