@@ -3,7 +3,7 @@ GEM
   specs:
     airbrussh (1.5.3)
       sshkit (>= 1.6.1, != 1.7.0)
-    ast (2.4.2)
+    ast (2.4.3)
     base64 (0.2.0)
     bcrypt_pbkdf (1.1.1)
     bcrypt_pbkdf (1.1.1-arm64-darwin)
@@ -36,7 +36,7 @@ GEM
       capistrano-shared_configs
       ed25519
     ed25519 (1.3.0)
-    honeybadger (5.27.0)
+    honeybadger (5.27.1)
       logger
       ostruct
     i18n (1.14.7)
@@ -52,7 +52,7 @@ GEM
     net-ssh (7.3.0)
     ostruct (0.6.1)
     parallel (1.26.3)
-    parser (3.3.7.1)
+    parser (3.3.7.2)
       ast (~> 2.4.1)
       racc
     racc (1.8.1)
@@ -83,8 +83,8 @@ GEM
       rubocop-ast (>= 1.38.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.39.0)
-      parser (>= 3.3.1.0)
+    rubocop-ast (1.41.0)
+      parser (>= 3.3.7.2)
     rubocop-capybara (2.22.1)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
