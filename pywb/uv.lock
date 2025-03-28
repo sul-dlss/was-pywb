@@ -1,5 +1,4 @@
 version = 1
-revision = 1
 requires-python = ">=3.11.0, <3.12"
 
 [[package]]
@@ -318,7 +317,7 @@ wheels = [
 [[package]]
 name = "pywb"
 version = "2.8.3"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/webrecorder/pywb#0de883eac31afe2472a7512aecbe9914324a6b38" }
 dependencies = [
     { name = "brotlipy" },
     { name = "fakeredis" },
@@ -341,10 +340,6 @@ dependencies = [
     { name = "webencodings" },
     { name = "werkzeug" },
     { name = "wsgiprox" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/4a/ca/370f91dea6a1bd52ae51ab659577acf6d56a71cee87a1a2c58fb05a616fb/pywb-2.8.3.tar.gz", hash = "sha256:d547d04f7a32b999756339ba1a2d7580ab5f2206f5612777ad0531efd28d1474", size = 3194244 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/5c/59/42fedfd50b3fde4d84907ffaabe96af4ebcc8c65021bbfdf33f98bdbfd6c/pywb-2.8.3-py2.py3-none-any.whl", hash = "sha256:efe898c1d4522700396643d2c34e96fb34f6b8289ec5efbe4cf27564d87be568", size = 3120491 },
 ]
 
 [[package]]
@@ -522,7 +517,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "cdxj-indexer", specifier = ">=1.4.5,<2.0.0" },
-    { name = "pywb", specifier = ">=2.8.0,<3.0.0" },
+    { name = "pywb", git = "https://github.com/webrecorder/pywb" },
     { name = "uwsgi", specifier = ">=2.0.20,<3.0.0" },
 ]
 
