@@ -8,12 +8,11 @@ cd pywb/
 export LANG=en_US.UTF-8
 export LC_COLLATE=C.UTF-8
 
-# Needed to successfully run `pipx`-installed executables
+# Needed for pip3 installed uv to be found
 export PATH="$HOME/.local/bin:$PATH"
 
-pip3 install --user pipx > was-pywb.txt &&
-    pipx install uv --force >> was-pywb.txt &&
-    uv lock --upgrade -q --no-progress --color never >> was-pywb.txt
+pip3 install --upgrade uv > was-pywb.txt &&
+    uv lock --upgrade --quiet --no-progress --color never >> was-pywb.txt
 
 retVal=$?
 
