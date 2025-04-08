@@ -8,7 +8,7 @@ authors = [
 license = {text = "Apache 2.0"}
 requires-python = ">=3.11.0, <3.12"
 dependencies = [
-    "pywb >=2.8.0, <3.0.0",
+    "pywb@git+https://github.com/webrecorder/pywb#egg=issue-924-client-side-playback",
     "uWSGI >=2.0.20, <3.0.0",
     "cdxj-indexer >=1.4.5, <2.0.0",
 ]
