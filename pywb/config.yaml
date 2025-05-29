@@ -10,3 +10,5 @@ ui:
   navbar_background_hex: 343a40
   navbar_color_hex: ffffff
   navbar_light_buttons: ffffff
+
+client_side_replay: true
