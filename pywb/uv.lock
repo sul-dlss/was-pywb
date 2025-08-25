@@ -317,7 +317,7 @@ wheels = [
 
 [[package]]
 name = "pywb"
-version = "2.8.4"
+version = "2.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "brotlipy" },
@@ -342,9 +342,9 @@ dependencies = [
     { name = "werkzeug" },
     { name = "wsgiprox" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/55/d4/a5f0139e35ac2ae836d52223fdb700e5f71e57bba68c58698356de53f5b5/pywb-2.8.4.tar.gz", hash = "sha256:084a9714ef1040575a628bf2f87200b7c14bef82ba7cd7ecc07dce7a8577ba7e", size = 3194754, upload-time = "2025-04-18T11:21:24.862Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b5/0c/f0c0e2cfadc1839d8585fa36483af13737067c2a6d8da51163fc10e16cab/pywb-2.9.0.tar.gz", hash = "sha256:d73fe2397d643de0f510ea3719eddd90d149a7d856db568475ec5bdcb8b60a04", size = 3525101, upload-time = "2025-08-18T22:25:03.758Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/91/e7/b62b1b987bd5ecc40f1c54c90b962e2a6523febee4fc3f4d293c60dbe6cc/pywb-2.8.4-py2.py3-none-any.whl", hash = "sha256:7e4f37cfa98f0fcf32268611377331a3c446a451d1ed80f06ef9365486d6a225", size = 3121035, upload-time = "2025-04-18T11:21:22.375Z" },
+    { url = "https://files.pythonhosted.org/packages/22/c0/d69df9dc732be169a5cb0a15a98ad8d619deccca5ab763c6a933855a2ead/pywb-2.9.0-py2.py3-none-any.whl", hash = "sha256:016be1c1aa089d997affa4a4fdc99dfc6aa20a6db9df3bb893c950549fe959fa", size = 3453415, upload-time = "2025-08-18T22:25:02.079Z" },
 ]
 
 [[package]]
@@ -385,7 +385,7 @@ wheels = [
 
 [[package]]
 name = "requests"
-version = "2.32.4"
+version = "2.32.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
@@ -393,9 +393,9 @@ dependencies = [
     { name = "idna" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e1/0a/929373653770d8a0d7ea76c37de6e41f11eb07559b103b1c02cafb3f7cf8/requests-2.32.4.tar.gz", hash = "sha256:27d0316682c8a29834d3264820024b62a36942083d52caf2f14c0591336d3422", size = 135258, upload-time = "2025-06-09T16:43:07.34Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c9/74/b3ff8e6c8446842c3f5c837e9c3dfcfe2018ea6ecef224c710c85ef728f4/requests-2.32.5.tar.gz", hash = "sha256:dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf", size = 134517, upload-time = "2025-08-18T20:46:02.573Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7c/e4/56027c4a6b4ae70ca9de302488c5ca95ad4a39e190093d6c1a8ace08341b/requests-2.32.4-py3-none-any.whl", hash = "sha256:27babd3cda2a6d50b30443204ee89830707d396671944c998b5975b031ac2b2c", size = 64847, upload-time = "2025-06-09T16:43:05.728Z" },
+    { url = "https://files.pythonhosted.org/packages/1e/db/4254e3eabe8020b458f1a747140d32277ec7a271daf1d235b70dc0b4e6e3/requests-2.32.5-py3-none-any.whl", hash = "sha256:2462f94637a34fd532264295e186976db0f5d453d1cdd31473c85a6a161affb6", size = 64738, upload-time = "2025-08-18T20:46:00.542Z" },
 ]
 
 [[package]]
