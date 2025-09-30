@@ -10,3 +10,6 @@ ui:
   navbar_background_hex: 343a40
   navbar_color_hex: ffffff
   navbar_light_buttons: ffffff
+
+# Use wabac.js-style client-side replay system for framed replay
+client_side_replay: true
