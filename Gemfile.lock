@@ -36,12 +36,12 @@ GEM
       capistrano-shared_configs
       ed25519
     ed25519 (1.4.0)
-    honeybadger (6.1.0)
+    honeybadger (6.1.1)
       logger
       ostruct
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    json (2.15.0)
+    json (2.15.1)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     logger (1.7.0)
@@ -55,7 +55,7 @@ GEM
     parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
-    prism (1.5.1)
+    prism (1.5.2)
     racc (1.8.1)
     rainbow (3.1.1)
     rake (13.3.0)
