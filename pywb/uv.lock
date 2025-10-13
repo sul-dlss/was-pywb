@@ -173,32 +173,33 @@ wheels = [
 
 [[package]]
 name = "filelock"
-version = "3.19.1"
+version = "3.20.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/40/bb/0ab3e58d22305b6f5440629d20683af28959bf793d98d11950e305c1c326/filelock-3.19.1.tar.gz", hash = "sha256:66eda1888b0171c998b35be2bcc0f6d75c388a7ce20c3f3f37aa8e96c2dddf58", size = 17687, upload-time = "2025-08-14T16:56:03.016Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/58/46/0028a82567109b5ef6e4d2a1f04a583fb513e6cf9527fcdd09afd817deeb/filelock-3.20.0.tar.gz", hash = "sha256:711e943b4ec6be42e1d4e6690b48dc175c822967466bb31c0c293f34334c13f4", size = 18922, upload-time = "2025-10-08T18:03:50.056Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/42/14/42b2651a2f46b022ccd948bca9f2d5af0fd8929c4eec235b8d6d844fbe67/filelock-3.19.1-py3-none-any.whl", hash = "sha256:d38e30481def20772f5baf097c122c3babc4fcdb7e14e57049eb9d88c6dc017d", size = 15988, upload-time = "2025-08-14T16:56:01.633Z" },
+    { url = "https://files.pythonhosted.org/packages/76/91/7216b27286936c16f5b4d0c530087e4a54eead683e6b0b73dd0c64844af6/filelock-3.20.0-py3-none-any.whl", hash = "sha256:339b4732ffda5cd79b13f4e2711a31b0365ce445d95d243bb996273d072546a2", size = 16054, upload-time = "2025-10-08T18:03:48.35Z" },
 ]
 
 [[package]]
 name = "gevent"
-version = "22.10.2"
+version = "23.9.0.post1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cffi", marker = "platform_python_implementation == 'CPython' and sys_platform == 'win32'" },
     { name = "greenlet", marker = "platform_python_implementation == 'CPython'" },
-    { name = "setuptools" },
     { name = "zope-event" },
     { name = "zope-interface" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9f/4a/e9e57cb9495f0c7943b1d5965c4bdd0d78bc4a433a7c96ee034b16c01520/gevent-22.10.2.tar.gz", hash = "sha256:1ca01da176ee37b3527a2702f7d40dbc9ffb8cfc7be5a03bfa4f9eec45e55c46", size = 6551607, upload-time = "2022-10-31T18:54:12.343Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a0/06/7727ae8e3a065078327386b1c611995efb1a50a455fbab8af612d3b2d9ce/gevent-23.9.0.post1.tar.gz", hash = "sha256:943f26edada39dfd5f50551157bb9011191c7367be36e341d0f1cdecfe07a229", size = 5841755, upload-time = "2023-09-02T16:39:59.095Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6c/81/f24cdc21f5456e1134857b3053bae9da899ca309606f5c1546d36ba81d8f/gevent-22.10.2-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:8f2477e7b0a903a01485c55bacf2089110e5f767014967ba4b287ff390ae2638", size = 2933219, upload-time = "2022-10-31T19:08:59.823Z" },
-    { url = "https://files.pythonhosted.org/packages/c4/6e/dd18a5a1e220aea258d95e909bea1a67ce3528568c61be67ef82244d6ff4/gevent-22.10.2-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ddaa3e310a8f1a45b5c42cf50b54c31003a3028e7d4e085059090ea0e7a5fddd", size = 5163454, upload-time = "2022-10-31T20:29:41.663Z" },
-    { url = "https://files.pythonhosted.org/packages/ba/38/4bf86c3063b8ef58ac12d24b8e6a3a1ba7ecf8fccd73e620018e0d217bb0/gevent-22.10.2-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:98bc510e80f45486ef5b806a1c305e0e89f0430688c14984b0dbdec03331f48b", size = 5309527, upload-time = "2022-10-31T20:50:14.146Z" },
-    { url = "https://files.pythonhosted.org/packages/ea/6c/86540e4da80ebbc899b771b70231c20618295289706509b4b88da9682d0c/gevent-22.10.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:877abdb3a669576b1d51ce6a49b7260b2a96f6b2424eb93287e779a3219d20ba", size = 6811910, upload-time = "2022-10-31T19:26:01.644Z" },
-    { url = "https://files.pythonhosted.org/packages/c9/0c/ed20ce565fd3e4df33b4a402a62bb3a8b5a64dd96a6a0e0c5f0a8181a98e/gevent-22.10.2-cp311-cp311-musllinux_1_1_x86_64.whl", hash = "sha256:d21ad79cca234cdbfa249e727500b0ddcbc7adfff6614a96e6eaa49faca3e4f2", size = 6859209, upload-time = "2022-10-31T19:36:36.66Z" },
-    { url = "https://files.pythonhosted.org/packages/26/5d/f5d1ad8e64ea16543131f4b7c189b675f73f6dc8e9fb6546c6e6421f43a7/gevent-22.10.2-cp311-cp311-win_amd64.whl", hash = "sha256:1e955238f59b2947631c9782a713280dd75884e40e455313b5b6bbc20b92ff73", size = 1501090, upload-time = "2022-10-31T19:57:49.972Z" },
+    { url = "https://files.pythonhosted.org/packages/5d/d7/c7b487f029aacb5b00014c4dbaa2e417ff31adfe9c5dc69b2345f749055b/gevent-23.9.0.post1-cp311-cp311-macosx_11_0_universal2.whl", hash = "sha256:29ccc476077a317d082ddad4dabf5c68ccf7079aaf14aa5be8e0529b06f569a6", size = 2939801, upload-time = "2023-09-02T16:31:51.823Z" },
+    { url = "https://files.pythonhosted.org/packages/b3/5d/bb8d2261bfe91d69246b5ab0f28235a739e424c2e560dca25caa0e0c1d58/gevent-23.9.0.post1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:6cb909b0649b0e15c069527a61af83f067e4c59ff03a07aa40aa2d5e8e355d20", size = 4898848, upload-time = "2023-09-02T17:17:00.319Z" },
+    { url = "https://files.pythonhosted.org/packages/b8/73/7df6573ffaa285b29346b35a61228e3f07293f849ce8b89c2ffa51ccdaee/gevent-23.9.0.post1-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:f463a131df0e8d466a8caf7909ad73c80f793ed97c6376e78c7c75a51f19cba0", size = 5060183, upload-time = "2023-09-02T17:16:35.069Z" },
+    { url = "https://files.pythonhosted.org/packages/26/78/e17263b287d1ef52826e228aa697e560615fd89742e7ed29bc9e393e7082/gevent-23.9.0.post1-cp311-cp311-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:edb9ceb5f88154e83ee8fc2e4b2d8ca070c62f1266d73f88578109b9c4564003", size = 5118995, upload-time = "2023-09-02T17:24:39.789Z" },
+    { url = "https://files.pythonhosted.org/packages/c0/9b/56cb9ae08ead96aa0b044f3f2f39afbea7354ec41fe3b99ca5ca4d3f3190/gevent-23.9.0.post1-cp311-cp311-manylinux_2_28_x86_64.whl", hash = "sha256:ee6382fde487a84a4a21711988d9eb97ed63c69be085b442e1665dc44022be60", size = 6526446, upload-time = "2023-09-02T17:07:12.373Z" },
+    { url = "https://files.pythonhosted.org/packages/9a/1b/2d491d47eaa4b43f6236736192d5f663d13a04558c0f080b4b27d279c236/gevent-23.9.0.post1-cp311-cp311-musllinux_1_1_aarch64.whl", hash = "sha256:a9d21796a54dcccabe9fc0053c1bd991dfa63e554873e5a5f9c0885984068b2a", size = 5466082, upload-time = "2023-09-02T17:34:17.275Z" },
+    { url = "https://files.pythonhosted.org/packages/98/fa/7fa6a1d34bfbf4f5b3733572bc49d128d07fe82c3ca9fa726efe70178c03/gevent-23.9.0.post1-cp311-cp311-musllinux_1_1_x86_64.whl", hash = "sha256:d33f997d97f267e9f62db9cd03d42f711df2ddba944173853773b220187ca7a0", size = 6591880, upload-time = "2023-09-02T17:11:19.755Z" },
+    { url = "https://files.pythonhosted.org/packages/ca/86/f47fe1286dc8f62f78dbd537e03f2b0c325bd086beac25e2a95f1309f451/gevent-23.9.0.post1-cp311-cp311-win_amd64.whl", hash = "sha256:4bdca1bd1fb0c3524dbe0a273c87eb9a0428ea7f2533d579a3194426fbb93c92", size = 1522345, upload-time = "2023-09-02T16:33:18.921Z" },
 ]
 
 [[package]]
@@ -325,7 +326,7 @@ wheels = [
 
 [[package]]
 name = "pywb"
-version = "2.9.0"
+version = "2.9.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "brotlipy" },
@@ -350,9 +351,9 @@ dependencies = [
     { name = "werkzeug" },
     { name = "wsgiprox" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b5/0c/f0c0e2cfadc1839d8585fa36483af13737067c2a6d8da51163fc10e16cab/pywb-2.9.0.tar.gz", hash = "sha256:d73fe2397d643de0f510ea3719eddd90d149a7d856db568475ec5bdcb8b60a04", size = 3525101, upload-time = "2025-08-18T22:25:03.758Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7f/d9/4e5097f77bdf0a9f91ee3914f6ae9a77aec659ef2682100daae5588f2723/pywb-2.9.1.tar.gz", hash = "sha256:353ca1a6d11ce31860fae8db96e4ca3cae7e2aecbce3a64036401f5c83d738a8", size = 3525734, upload-time = "2025-10-07T01:18:46.878Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/22/c0/d69df9dc732be169a5cb0a15a98ad8d619deccca5ab763c6a933855a2ead/pywb-2.9.0-py2.py3-none-any.whl", hash = "sha256:016be1c1aa089d997affa4a4fdc99dfc6aa20a6db9df3bb893c950549fe959fa", size = 3453415, upload-time = "2025-08-18T22:25:02.079Z" },
+    { url = "https://files.pythonhosted.org/packages/6e/4a/f105e57670cae5678f14dc46accd1e57818f7209a9924a04cc3f40fa89cc/pywb-2.9.1-py2.py3-none-any.whl", hash = "sha256:8d7f1420ce690cda89f455ad927db6b1c5d0d11c168886b52e62d4c7191418c1", size = 3454186, upload-time = "2025-10-07T01:18:44.914Z" },
 ]
 
 [[package]]
@@ -501,9 +502,9 @@ wheels = [
 
 [[package]]
 name = "uwsgi"
-version = "2.0.30"
+version = "2.0.31"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/6f/f0/d794e9c7359f488b158e88c9e718c5600efdb74a0daf77331e5ffb6c87c4/uwsgi-2.0.30.tar.gz", hash = "sha256:c12aa652124f062ac216077da59f6d247bd7ef938234445881552e58afb1eb5f", size = 822560, upload-time = "2025-06-03T08:13:53.772Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9f/49/2f57640e889ba509fd1fae10cccec1b58972a07c2724486efba94c5ea448/uwsgi-2.0.31.tar.gz", hash = "sha256:e8f8b350ccc106ff93a65247b9136f529c14bf96b936ac5b264c6ff9d0c76257", size = 822796, upload-time = "2025-10-11T19:17:28.794Z" }
 
 [[package]]
 name = "warcio"
