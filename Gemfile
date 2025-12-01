@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gem 'byebug'
 gem 'capistrano'
+gem 'capistrano-bundler'
 gem 'dlss-capistrano'
 gem 'honeybadger'
 gem 'parallel'
