@@ -163,7 +163,7 @@ Lint/RequireRangeParentheses: # new in 1.32
   Enabled: true
 Style/EmptyHeredoc: # new in 1.32
   Enabled: true
-Capybara/SpecificMatcher: # new in 2.12
+Capybara/RSpec/SpecificMatcher: # new in 2.12
   Enabled: true
 RSpecRails/HaveHttpStatus: # new in 2.12
   Enabled: true
@@ -225,9 +225,9 @@ Style/RedundantRegexpConstructor: # new in 1.52
   Enabled: true
 Style/RedundantStringEscape: # new in 1.37
   Enabled: true
-Capybara/MatchStyle: # new in 2.17
+Capybara/RSpec/MatchStyle: # new in 2.17
   Enabled: true
-Capybara/NegationMatcher: # new in 2.14
+Capybara/RSpec/NegationMatcher: # new in 2.14
   Enabled: true
 Capybara/SpecificActions: # new in 2.14
   Enabled: true
