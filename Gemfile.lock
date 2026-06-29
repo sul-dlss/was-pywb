@@ -33,7 +33,7 @@ GEM
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     io-console (0.8.2)
-    json (2.19.9)
+    json (2.20.0)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     logger (1.7.0)
@@ -41,7 +41,7 @@ GEM
       net-ssh (>= 2.6.5, < 8.0.0)
     net-sftp (4.0.0)
       net-ssh (>= 5.0.0, < 8.0.0)
-    net-ssh (7.3.2)
+    net-ssh (7.3.3)
     ostruct (0.6.3)
     parallel (2.1.0)
     parser (3.3.11.1)
@@ -81,7 +81,7 @@ GEM
     rubocop-ast (1.49.1)
       parser (>= 3.3.7.2)
       prism (~> 1.7)
-    rubocop-capybara (2.23.0)
+    rubocop-capybara (3.0.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.81)
     rubocop-factory_bot (2.28.0)
@@ -138,4 +138,4 @@ DEPENDENCIES
   ruby-progressbar
 
 BUNDLED WITH
-  4.0.14
+  4.0.15
