@@ -99,7 +99,7 @@ GEM
       rubocop (~> 1.72, >= 1.72.1)
       rubocop-rspec (~> 3.5)
     ruby-progressbar (1.13.0)
-    sshkit (1.25.0)
+    sshkit (1.25.1)
       base64
       logger
       net-scp (>= 1.1.2)
@@ -138,4 +138,4 @@ DEPENDENCIES
   ruby-progressbar
 
 BUNDLED WITH
-  4.0.16
+  4.0.17
