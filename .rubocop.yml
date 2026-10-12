@@ -8,7 +8,7 @@ require:
 inherit_from: .rubocop_todo.yml
 
 AllCops:
-  TargetRubyVersion: 3.4
+  TargetRubyVersion: 4.0
   SuggestExtensions: false
 
 Style/StringConcatenation:
