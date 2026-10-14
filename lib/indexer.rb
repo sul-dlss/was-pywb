@@ -4,9 +4,13 @@ require 'digest'
 require 'fileutils'
 require 'logger'
 require 'optparse'
-require 'pathname'
 require 'parallel'
 require 'ruby-progressbar'
+# rubocop:disable Lint/RedundantRequireStatement
+# Pathname#find is only defined when the full pathname library is loaded;
+# without this explicit require, Pathname.new(...).find raises NoMethodError.
+require 'pathname'
+# rubocop:enable Lint/RedundantRequireStatement
 
 # A utility class for walking the filesystem looking for WARCs to index. This is
 # not meant for everyday usage, but for bootstrapping swap.stanford.edu in
