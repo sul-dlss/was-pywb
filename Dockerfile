@@ -15,7 +15,7 @@ ADD ./test-data/stanford.warc.gz /web-archiving-stacks/data/collections/stanford
 ADD ./test-data/stanford.cdxj /web-archiving-stacks/data/indexes/cdxj/stanford.cdxj
 
 # add the ALCJ file for testing
-ADD ./test-data/access.aclj /web-archiving-stacks/data/access.aclj
+ADD ./test-data/access.aclj /var/lib/pywb/access.aclj
 
 # add our code
 WORKDIR /home/was/swap/current/
