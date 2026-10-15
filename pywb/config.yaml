@@ -3,7 +3,7 @@ collections:
     index_paths: /web-archiving-stacks/data/indexes/cdxj/
     archive_paths: 
       - /web-archiving-stacks/data/collections/
-    acl_paths: /web-archiving-stacks/data/access.aclj
+    acl_paths: /var/lib/pywb/access.aclj
 
 ui:
   logo: images/swaplogo.png
